@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
+import { Box, Stack, Button, TextField } from '@mui/material';
+import SearchExercises from './SearchExercises';
 
+const token = import.meta.env.EXERCISE_API_KEY;
+const host = 'exercisedb.p.rapidapi.com';
 export default function Exercise() {
-    const baseUrl = `https://exercisedb.p.rapidapi.com/exercises/name/${name}`;
+    // const baseUrl = `https://exercisedb.p.rapidapi.com/exercises?limit=10&offset=0`;
     const name = '';
-    const exerciseOptions = {
+    const option = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': import.meta.env.EXERCISE_API_KEY,
-            'x-rapidapi-host': 'exercisedb.p.rapidapi.com'
+            'x-rapidapi-key': token,
+            'x-rapidapi-host': host
         }
     };
 
@@ -15,7 +19,7 @@ export default function Exercise() {
 
     const exerciseFetchData = async () => {
         try {
-            const response = await fetch(exerciseUrl, exerciseOptions);
+            const response = await fetch(baseUrl, option);
             console.log(response.status);
             const result = await response.json();
             console.log(result);
@@ -30,7 +34,8 @@ export default function Exercise() {
 
     return (
         <div>
-            <h1>exercise search and list page goes here</h1>
+            <SearchExercises />
+            <h1>exercise list goes here</h1>
         </div>
     );
 }
