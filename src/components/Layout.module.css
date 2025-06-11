@@ -1,0 +1,59 @@
+
+nav{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 1.2em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+}
+
+.navLink{
+    font-size: 1.2em;
+}
+
+.navLink a{
+    padding-left: 10px;
+}
+
+.navLink a:hover{
+    text-decoration: underline;
+}
+
+.navLink span{
+    margin-left: 1em;
+}
+
+.navLink span > button{
+    margin-right: 10px;
+}
+
+.login{
+    background: rgba(255, 255, 255, 0.1);
+    border: .5px solid var(--accent-color);
+}
+
+
+footer{
+    padding-block: 2em;
+    align-self: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+@media screen and (max-width: 480px) {
+    nav a{
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,48 @@
+:root{
+  --primary-color: #CA733D;
+  --accent-color: #c0392b;
+  --background-color: #1C3A40;
+}
+
+body{
+  font-family: 'Inter', sans-serif;
+}
+
+h1,h2,h3{
+  font-family: "Oswald", sans-serif;
+}
+
+p{
+  letter-spacing: 1.6px;
+}
+
+button{
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 1.6px;
+  transition: all 0.3s ease;
+}
+
+button:hover{
+  background-color:#a53124;
+}
+
+@media screen and (max-width: 480px) {
+    h1{
+      font-size: 1.3rem;
+    }
+
+    h2{
+      font-size: 1.2rem;
+    }
+    p{
+      font-size: .8rem;
+    }
+}
