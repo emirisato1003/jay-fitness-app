@@ -33,9 +33,9 @@ export default function Exercise() {
     }, []);
 
     return (
-        <div>
+        <main className='exercise'>
             <SearchExercises />
             <h1>exercise list goes here</h1>
-        </div>
+        </main>
     );
 }

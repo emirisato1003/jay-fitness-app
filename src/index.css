@@ -47,8 +47,8 @@ main.home button:hover{
   box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
 }
 
-/***about page***/
-main.about{
+/*** main elements from about and exercise ***/
+main{
   /* height: 100vh; */
   display: flex;
   flex-direction: column;
@@ -56,6 +56,7 @@ main.about{
   justify-content: center;
 }
 
+/***about page***/
 article.contents{
   /* max-width: 900px; */
   width: auto;
@@ -164,6 +165,9 @@ li .icon{
   padding: 1.2em;  
   box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
 }
+
+/***exercise page***/
+
 
 @media screen and (max-width: 480px) {
     .features{

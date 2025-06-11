@@ -30,6 +30,12 @@ button{
   transition: all 0.3s ease;
 }
 
+input{
+  padding: 6px 20px;
+  border-radius: 6px 0 0 6px;
+  border: none;  
+}
+
 button:hover{
   background-color:#a53124;
 }

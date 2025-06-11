@@ -6,8 +6,6 @@ import Layout from './shared/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Exercise from './pages/exercise/Exercise';
-import SearchExercises from './pages/exercise/SearchExercises';
-import ExerciseLayout from './components/ExerciseLayout';
 
 function App() {
 
