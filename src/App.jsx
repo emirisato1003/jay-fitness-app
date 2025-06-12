@@ -16,6 +16,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='about' element={<About />} />
           <Route path='exercise' element={<Exercise />} />
+          <Route path='exercise/:id' element={} />
         </Route>
       </Routes>
     </>
