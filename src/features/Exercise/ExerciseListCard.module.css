@@ -1,0 +1,67 @@
+
+.exerciseListCard{
+    padding: 1em;
+    background-color: white;
+    color: var(--dark-text-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.exerciseListCard a{
+    text-decoration: none;
+}
+
+.exerciseListCard:hover{
+    transform:translateY(-5px) ;
+}
+
+.exerciseListCard img{
+    width: 250px;
+    height: auto;
+}
+
+
+.badges{
+    text-transform: uppercase;
+    margin-block: .6em;
+}
+
+.badge{
+    padding: 5px 10px;
+    font-size: .8rem;
+    color: white;
+    border-radius: 20px;
+}
+
+.categoryBadge{
+    margin-right: 6px;
+    background-color: var(--brown-color);
+}
+
+.targetBadge{
+    margin-right: 6px;
+    background-color: var(--light-brown-color);
+}
+
+.bodyPartBadge{
+    background-color: var(--accent-color);
+}
+
+.exerciseListCard p{
+    color: var(--brown-color);
+    font-size: .9rem;
+    margin: 5px 0 0 6px;
+}
+
+.exerciseListCard h1{
+    text-transform: capitalize;
+    margin:9px 0 0 6px;
+}
+
+
+@media screen and (max-width: 480px) {
+    .exerciseListCard img{
+        width: 200px;
+    }
+}

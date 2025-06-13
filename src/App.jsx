@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router';
 import Layout from './Layout/Layout'
 import Home from './pages/Home';
 import About from './pages/About';
-import ExerciseList from './features/exercise/ExerciseList';
+import ExerciseList from './features/Exercise/Exercise';
 import ExerciseListDetail from './shared/ExerciseDetail/ExerciseListDetail';
 
 function App() {

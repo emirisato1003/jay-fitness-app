@@ -2,6 +2,12 @@
   --primary-color: #CA733D;
   --accent-color: #c0392b;
   --background-color: #1C3A40;
+  --secondary-background-color: #7C8384;
+  --white-color: oklch(98.5% 0 0);
+  --dark-text-color: #161616;
+  --secondary-text-color:oklch(55.1% 0.027 264.364);
+  --brown-color: #3B2C22;
+  --light-brown-color: #835030;
 }
 
 body{
