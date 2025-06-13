@@ -1,16 +1,20 @@
-<<<<<<< HEAD
-# jay-fitness-app
-=======
-# React + Vite
+# Jay React Course Final Project
+## #FITLIFE (Fitness Application)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Overview
+This fitness app helps users discover exercise tutorials and build their workout routines. Users can search for exercises in three ways: by exercise name, equipment type, or target muscle group. When users find exercises they like, they can save them to create a personalized workout list that includes step-by-step tutorials and instructional YouTube videos.
 
-Currently, two official plugins are available:
+The app features a mobile-friendly design, making it perfect for use at the gym or any workout location. Whether you're planning your routine at home or need a quick tutorial reminder during your workout, you can access your saved exercises and instructions anytime, anywhere. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+### Features⚙️
+- Search exercises by name, equipment, or target body area
+- Save favorite exercises to build custom workout lists
+- Access tutorial videos and instructions
+- Mobile-responsive design for gym use
+- Available whenever and wherever you work out
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
->>>>>>> 82ff165 (initial commit)
+### dependencies
+- react-router
+- react-icon
+- 

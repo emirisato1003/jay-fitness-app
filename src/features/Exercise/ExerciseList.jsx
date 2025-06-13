@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Stack, Button, TextField } from '@mui/material';
-import SearchExercises from './SearchExercises';
+import SearchExercises from '../../shared/ExerciseViewForm/SearchExercises';
 
 const token = import.meta.env.EXERCISE_API_KEY;
 const host = 'exercisedb.p.rapidapi.com';
