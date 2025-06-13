@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 // import { getClaudeResponse } from './ai';
 import './App.css';
 import { Route, Routes } from 'react-router';
-import Layout from './shared/Layout';
+import Layout from './Layout/Layout'
 import Home from './pages/Home';
 import About from './pages/About';
-import Exercise from './features/Exercise/ExerciseList';
+import ExerciseList from './features/exercise/ExerciseList';
+import ExerciseListDetail from './shared/ExerciseDetail/ExerciseListDetail';
 
 function App() {
 
@@ -15,8 +16,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='about' element={<About />} />
-          <Route path='exercise' element={<Exercise />} />
-          <Route path='exercise/:id' element={<ExerciseDetail />} />
+          <Route path='exercise' element={<ExerciseList />} />
+          <Route path='exercise/:id' element={<ExerciseListDetail />} />
         </Route>
       </Routes>
     </>

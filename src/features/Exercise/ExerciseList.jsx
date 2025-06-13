@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { Box, Stack, Button, TextField } from '@mui/material';
 import SearchExercises from '../../shared/ExerciseViewForm/SearchExercises';
+import '../../service/service'
 
 const token = import.meta.env.EXERCISE_API_KEY;
 const host = 'exercisedb.p.rapidapi.com';
-export default function Exercise() {
+export default function ExerciseList() {
     // const baseUrl = `https://exercisedb.p.rapidapi.com/exercises?limit=10&offset=0`;
+    const mockBaseUrl = `/api/exercises`
     const name = '';
     const option = {
         method: 'GET',
@@ -19,7 +21,7 @@ export default function Exercise() {
 
     const exerciseFetchData = async () => {
         try {
-            const response = await fetch(baseUrl, option);
+            const response = await fetch(mockBaseUrl);
             console.log(response.status);
             const result = await response.json();
             console.log(result);
