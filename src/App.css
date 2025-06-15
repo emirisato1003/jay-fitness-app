@@ -2,7 +2,7 @@
   --primary-color: #CA733D;
   --accent-color: #c0392b;
   --background-color: #1C3A40;
-  --secondary-background-color: #7C8384;
+  --secondary-background-color: #93A1A5;
   --white-color: oklch(98.5% 0 0);
   --dark-text-color: #161616;
   --secondary-text-color:oklch(55.1% 0.027 264.364);
@@ -16,6 +16,7 @@ body{
 
 h1,h2,h3{
   font-family: "Oswald", sans-serif;
+  text-transform: capitalize;
 }
 
 p{
@@ -34,6 +35,32 @@ button{
   cursor: pointer;
   letter-spacing: 1.6px;
   transition: all 0.3s ease;
+}
+
+.badges{
+    text-transform: uppercase;
+    margin-block: .6em;
+}
+
+.badge{
+    padding: 5px 10px;
+    font-size: .8rem;
+    color: white;
+    border-radius: 20px;
+}
+
+.categoryBadge{
+    margin-right: 6px;
+    background-color: var(--brown-color);
+}
+
+.targetBadge{
+    margin-right: 6px;
+    background-color: var(--light-brown-color);
+}
+
+.bodyPartBadge{
+    background-color: var(--accent-color);
 }
 
 input{

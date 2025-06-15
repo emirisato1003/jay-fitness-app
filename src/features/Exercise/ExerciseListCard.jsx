@@ -11,10 +11,10 @@ export default function ExerciseListCard({ exercise }) {
         <div className={styles.exerciseListCard}>
             <Link to={exercise.id}>
                 <img src={exercise.gifUrl} alt={`${exercise.name}`} />
-                <div className={styles.badges}>
-                    <span className={`${styles.categoryBadge} ${styles.badge}`}>{exercise.category}</span>
-                    <span className={`${styles.targetBadge} ${styles.badge}`}>{exercise.target}</span>
-                    <span className={`${styles.bodyPartBadge} ${styles.badge}`}>{exercise.bodyPart}</span>
+                <div className='badges'>
+                    <span className='categoryBadge badge'>{exercise.category}</span>
+                    <span className='targetBadge badge'>{exercise.target}</span>
+                    <span className='bodyPartBadge badge'>{exercise.bodyPart}</span>
                 </div>
                 <h1>{exercise.name}</h1>
                 <p>Level: {exercise.difficulty}</p>

@@ -48,8 +48,10 @@ nav a{
 
 footer{
     padding-block: 2em;
-    align-self: center;
+    /* align-self: center; */
+    text-align: center;
     font-family: 'Oswald', sans-serif;
+    background-color: var(--dark-text-color);
 }
 
 @media screen and (max-width: 480px) {

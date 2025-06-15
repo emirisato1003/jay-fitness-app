@@ -1,0 +1,85 @@
+
+.backToButton{
+    color: var(--white-color);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin: 5em 1em;
+    flex-wrap: wrap;
+}
+
+.container img.gif{
+    width: 600px;
+}
+
+.contents{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3em;
+}
+
+.contents ol{
+    padding-inline: 3.2em;
+    /* text-align: start; */
+    max-width: 700px;
+}
+
+.contents ol > li{
+    letter-spacing: 3px;
+    font-weight: 200;
+    padding: .5em;
+    font-size: .9rem;
+}
+
+.contents ol li::marker{
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.muscles{
+    display: flex;
+    gap: 3em;
+}
+
+.muscles h3{
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.muscles p{
+    text-transform: capitalize;
+    letter-spacing: normal;
+}
+
+.secondaryTarget{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.muscleBadge{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: .8em;
+}
+
+.icon{
+    margin-top: 5px;
+    background-color: var(--secondary-background-color);
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+}
+
+.icon img{
+    transform: translate(8px,8px);
+}

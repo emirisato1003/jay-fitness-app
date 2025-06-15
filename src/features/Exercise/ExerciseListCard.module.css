@@ -21,33 +21,6 @@
     height: auto;
 }
 
-
-.badges{
-    text-transform: uppercase;
-    margin-block: .6em;
-}
-
-.badge{
-    padding: 5px 10px;
-    font-size: .8rem;
-    color: white;
-    border-radius: 20px;
-}
-
-.categoryBadge{
-    margin-right: 6px;
-    background-color: var(--brown-color);
-}
-
-.targetBadge{
-    margin-right: 6px;
-    background-color: var(--light-brown-color);
-}
-
-.bodyPartBadge{
-    background-color: var(--accent-color);
-}
-
 .exerciseListCard p{
     color: var(--brown-color);
     font-size: .9rem;

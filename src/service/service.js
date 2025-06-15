@@ -8,7 +8,7 @@ createServer({
         server.create("exercise", {
             bodyPart: "waist",
             equipment: "body weight",
-            gifUrl: "https://v2.exercisedb.io/image/jGfI9M6rdc5TfN",
+            gifUrl: "https://v2.exercisedb.io/image/6dWmpataxPBdzJ",
             id: "0001",
             name: "3/4 sit-up",
             target: "abs",
@@ -84,7 +84,7 @@ createServer({
             id: "0007",
             name: "alternate lateral pulldown",
             target: "lats",
-            secondaryMuscles: { 0: "biceps", 1: "rhomboids"},
+            secondaryMuscles: { 0: "biceps", 1: "rhomboids" },
             instructions: {
                 0: "Sit on the cable machine with your back straight and feet flat on the ground.",
                 1: "Grasp the handles with an overhand grip, slightly wider than shoulder-width apart.",
@@ -103,7 +103,7 @@ createServer({
             id: "0009",
             name: "assisted chest dip (kneeling)",
             target: "pectorals",
-            secondaryMuscles: { 0: "triceps", 1: "shoulders"},
+            secondaryMuscles: { 0: "triceps", 1: "shoulders" },
             instructions: {
                 0: "Adjust the machine to your desired height and secure your knees on the pad.",
                 1: "Grasp the handles with your palms facing down and your arms fully extended.",
@@ -121,8 +121,13 @@ createServer({
         this.namespace = "api";
         this.logging = false;
 
-        this.get("/exercises", (schema, request) => {
+        this.get("/exercises", (schema) => {
             return schema.exercises.all();
+        });
+
+        this.get("/exercises/:id", (schema, request) => {
+            const id = request.params.id;
+            return schema.exercises.find(id);
         });
     }
 });
