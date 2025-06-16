@@ -76,8 +76,8 @@ article.contents h1 , h2{
   margin-bottom: .6em;
 }
 
-section{
-  margin-block: 2em;
+section.about{
+  margin-block: 5em;
 }
 
 section.introduction{

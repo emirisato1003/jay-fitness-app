@@ -1,4 +1,12 @@
 
+section{
+    margin-block: 2em;
+}
+
+section.exerciseSearch{
+    margin-top: 0;
+}
+
 section.exerciseLists{
     display: flex;
     justify-content: center;

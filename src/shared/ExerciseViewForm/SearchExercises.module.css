@@ -1,0 +1,4 @@
+
+.button:disabled{
+    background-color: var(--secondary-background-color);
+}
