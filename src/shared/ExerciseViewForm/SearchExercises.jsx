@@ -1,46 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { fetchData } from '../../utils/fetchData';
+import { fetchData, exerciseOptions } from '../../utils/fetchData';
 // import styles from './Exercise.module.css'
 
-const token = import.meta.env.EXERCISE_API_KEY
-const host = 'exercisedb.p.rapidapi.com'
-
-export default function SearchExercises({ exercises }) {
-    const baseUrl = `https://exercisedb.p.rapidapi.com/exercises?limit=10&offset=0`;
+// const baseUrl = 'https://exercisedb.p.rapidapi.com/exercises';
+export default function SearchExercises({ setExercisesList }) {
     const [searchText, setSearchText] = useState('');
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': token,
-            'x-rapidapi-host': host,
-        }
-    };
-    const searchData = async () => {
-        try {
-            await new Promise(resolve => setTimeout(resolve, 1000))
-            const response = await fetch(baseUrl, options);
-            console.log(response.status);
-            const data = await response.json();
-            console.log(data);
-        } catch (error) {
-            console.error(error);
-        }
+    // const [filterExercises, setFilterExercises] = useState([]);
+
+    const searchDataFetch = async () => {
+        const { exercises } = await fetchData('/api/exercises', null);
+        const searchExercises = exercises.filter(({ name, bodyPart, target, equipment }) => name.toLowerCase().includes(searchText)
+            || bodyPart.toLowerCase().includes(searchText)
+            || target.toLowerCase().includes(searchText)
+            || equipment.toLowerCase().includes(searchText));
+        setExercisesList(searchExercises);
     };
 
     useEffect(() => {
-        searchData()
-    }, [])
+        const debounce = setTimeout(() => {
+            searchDataFetch();
+        }, 500);
+        return () => {
+            clearTimeout(debounce);
+        };
+    }, [searchText]);
 
-    // const handleSearch = async (e) => {
-    //     e.preventDefault();
-    //     const searchData = await fetchData(baseUrl, searchOptions);
-    //     // setSearchText(e.target.value.toLowerCase())
-    //     console.log(searchData);
-    // };
+    const preventRefresh = (e) => [
+        e.preventDefault()
+    ];
     return (
-        <form action="">
-            <input className="" type="text" placeholder='Search Exercises' onChange={(e) => setSearchText(e.target.value.toLowerCase())} value={searchText} name="" id="" />
-            <button>Search</button>
+        <form onSubmit={preventRefresh}>
+            <input className="" type="text" placeholder='Search Exercises' onChange={(e) => setSearchText(e.target.value.toLowerCase())} value={searchText} />
+            <button onClick={() => setSearchText('')}>Clear</button>
         </form>
     );
-}
+};
