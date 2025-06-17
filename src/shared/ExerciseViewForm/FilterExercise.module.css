@@ -1,16 +1,58 @@
 
-.bodyParts{
-    margin-inline: 6em;
-}
-
-.bodyParts button{
-    margin: 5px;
-}
-
-.bodyParts img{
+.bodyPart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
     width: 100px;
+    margin-inline: 1em;
+    /* background-color: var(--accent-color); */
+    background-color: var(--white-color);
+    color: var(--accent-color);
+    padding: 1em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .3s ease;
 }
 
-.bodyParts h3{
+.bodyPart img{
+    width: 55px;
+}
+
+.bodyPart h3{
     font-weight: 300;
+    text-align: center;
+}
+
+.bodyPart:hover{
+    background-color: var(--accent-color);
+    color: var(--white-color);
+}
+
+.arrows{
+    align-self: center;
+    cursor: pointer;
+    font-size: clamp(.7rem, 5vw, 2rem);
+}
+
+.arrows:hover{
+    color: var(--primary-color);
+}
+
+@media screen and (max-width: 600px) {
+    .bodyPart{
+        height: 90px;
+        width: 90px;
+        margin-inline: 10px;
+    }
+
+    .bodyPart img{
+        width: 50px;
+    }
+
+    .bodyPart h3{
+        font-size: .9rem;
+        text-align: center;
+    }
 }

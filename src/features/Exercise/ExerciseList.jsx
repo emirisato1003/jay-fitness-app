@@ -20,11 +20,13 @@ export default function ExerciseList() {
         setExercisesList(exercises);
         console.log(error);
     };
-
+    
     useEffect(() => {
         exerciseFetchData();
     }, []);
+    console.log(`selected body part is:`, bodyPart)
     // console.log(exercisesList.map(i => typeof i.id));
+    const filteredExercises = bodyPart === 'all' ? exercisesList : exercisesList.filter(item => item.bodyPart === bodyPart)
     return (
         <main>
             <section className={styles.exerciseSearch}>
@@ -33,13 +35,13 @@ export default function ExerciseList() {
                     setExercisesList={setExercisesList}
                 />
             </section>
-            <section className={styles.exerciseFilter}>
+            <section className={styles.exerciseFilterCards}>
                 <FilterExercise setBodyPart={setBodyPart}/>
             </section>
-            {exercisesList.length === 0 ?
+            {filteredExercises.length === 0 ?
                 <h1>No exercise Found</h1>
                 : <section className={styles.exerciseLists}>
-                    {exercisesList.map(exercise =>
+                    {filteredExercises.map(exercise =>
                         <ExerciseListCard
                             key={exercise.id}
                             exercise={exercise}

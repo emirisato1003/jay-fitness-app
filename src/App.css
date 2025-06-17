@@ -10,6 +10,10 @@
   --light-brown-color: #835030;
 }
 
+::-webkit-scrollbar{
+  display: none;
+}
+
 body{
   font-family: 'Inter', sans-serif;
 }

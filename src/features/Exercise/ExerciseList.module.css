@@ -14,3 +14,7 @@ section.exerciseSearch{
     flex-wrap: wrap;
     gap: 1em;
 }
+
+.exerciseFilterCards{
+    max-width: clamp(300px, 80vw, 1200px);
+}
