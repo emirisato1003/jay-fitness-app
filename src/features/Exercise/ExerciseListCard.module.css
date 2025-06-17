@@ -3,7 +3,7 @@ article{
     width: 300px;
 }
 .exerciseListCard{
-    padding: 1em;
+    padding: 10px;
     background-color: white;
     color: var(--dark-text-color);
     border-radius: 10px;

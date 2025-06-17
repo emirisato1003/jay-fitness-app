@@ -43,7 +43,10 @@ button{
 
 .badges{
     text-transform: uppercase;
-    margin-block: .6em;
+    display: flex;
+    align-items: center;
+    row-gap: 6px;
+    flex-wrap: wrap;
 }
 
 .badge{

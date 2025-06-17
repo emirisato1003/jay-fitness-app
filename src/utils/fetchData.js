@@ -1,6 +1,5 @@
 
 const token = import.meta.env.VITE_EXERCISES_API_KEY;
-// const host = 'exercisedb.p.rapidapi.com';
 
 export const exerciseOptions = {
     method: 'GET',

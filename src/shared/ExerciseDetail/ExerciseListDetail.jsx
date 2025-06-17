@@ -37,7 +37,7 @@ export default function ExerciseListDetail() {
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
             <div className={styles.icon}>
-                <img src={`/src/assets/icons/muscles/${exerciseDetail.target}.png`} alt="" />
+                <img src={`/src/assets/icons/muscles/${exerciseDetail.target || 'muscle'}.png`} alt="" />
             </div>
             <p>{exerciseDetail.target}</p>
         </div>;
@@ -47,7 +47,7 @@ export default function ExerciseListDetail() {
         return (
             <div key={key} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
-                    <img src={`/src/assets/icons/muscles/${muscleCleanName}.png`} alt="" />
+                    <img src={`/src/assets/icons/muscles/${muscleCleanName || 'muscle'}.png `} alt="" />
                 </div>
                 <p>{secondaryMuscles[key]}</p>
             </div>);
