@@ -3,6 +3,14 @@ section{
     margin-block: 1em;
 }
 
+section.exercises{
+    margin-bottom: 4em;
+}
+
+section.exercises h1{
+    margin: 0 0 .7em 3em ;
+}
+
 section.exerciseSearch{
     margin-top: 0;
 }
@@ -17,4 +25,11 @@ section.exerciseSearch{
 
 .exerciseFilterCards{
     max-width: clamp(300px, 80vw, 1200px);
+}
+
+hr{
+    margin-top: 1.5em;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--white-color), rgba(0, 0, 0, 0));
 }

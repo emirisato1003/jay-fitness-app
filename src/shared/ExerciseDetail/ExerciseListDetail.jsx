@@ -55,7 +55,7 @@ export default function ExerciseListDetail() {
 
     return (
         <div>
-            {isLoading ? <h1>Loading...</h1> :
+            {isLoading ? <h1 style={{textAlign: 'center'}}>Loading...</h1> :
                 <>
                     <Link className={styles.backToButton} to='/exercise'>&larr; Go back to Exercise List</Link>
                     <div className={styles.container}>

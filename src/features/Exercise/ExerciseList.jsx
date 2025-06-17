@@ -14,19 +14,20 @@ const mockBaseUrl = `/api/exercises`;
 export default function ExerciseList() {
     // --- useState ---
     const [exercisesList, setExercisesList] = useState([]);
-    const [bodyPart, setBodyPart] = useState('all')
+    const [bodyPart, setBodyPart] = useState('all');
+    const [isLoading, setIsLoading] = useState(false);
     const exerciseFetchData = async () => {
-        const {exercises, error} = await fetchData(baseUrl, exerciseOptions);
+        const { exercises, error } = await fetchData(baseUrl, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         setExercisesList(exercises);
         console.log(error);
     };
-    
+
     useEffect(() => {
         exerciseFetchData();
     }, []);
-    console.log(`selected body part is:`, bodyPart)
+    console.log(`selected body part is:`, bodyPart);
     // console.log(exercisesList.map(i => typeof i.id));
-    const filteredExercises = bodyPart === 'all' ? exercisesList : exercisesList.filter(item => item.bodyPart === bodyPart)
+    const filteredExercises = bodyPart === 'all' ? exercisesList : exercisesList.filter(item => item.bodyPart === bodyPart);
     return (
         <main>
             <section className={styles.exerciseSearch}>
@@ -36,17 +37,24 @@ export default function ExerciseList() {
                 />
             </section>
             <section className={styles.exerciseFilterCards}>
-                <FilterExercise setBodyPart={setBodyPart}/>
+                <FilterExercise setBodyPart={setBodyPart} />
+                <hr />
             </section>
             {filteredExercises.length === 0 ?
                 <h1>No exercise Found</h1>
-                : <section className={styles.exerciseLists}>
-                    {filteredExercises.map(exercise =>
-                        <ExerciseListCard
-                            key={exercise.id}
-                            exercise={exercise}
-                        />)}
-                </section>
+                :
+                <>
+                    <section className={styles.exercises}>
+                        <h1 style={{ margin: '0 0 .7em 3em' }}>{bodyPart} Exercises</h1>
+                        <div className={styles.exerciseLists}>
+                            {filteredExercises.map(exercise =>
+                                <ExerciseListCard
+                                    key={exercise.id}
+                                    exercise={exercise}
+                                />)}
+                        </div>
+                    </section>
+                </>
             }
         </main>
     );
