@@ -1,0 +1,16 @@
+
+.bodyParts{
+    margin-inline: 6em;
+}
+
+.bodyParts button{
+    margin: 5px;
+}
+
+.bodyParts img{
+    width: 100px;
+}
+
+.bodyParts h3{
+    font-weight: 300;
+}

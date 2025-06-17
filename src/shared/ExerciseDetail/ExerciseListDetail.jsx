@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import DetailRelatedVideo from './DetailRelatedVideo';
-import DetailRelatedList from './DetailRelatedList';
+import DetailRelatedVideo from '../RelatedExercise/DetailRelatedVideo';
+import DetailRelatedList from '../RelatedExercise/DetailRelatedList';
 import { Outlet, useParams, Link } from 'react-router';
-import muscle from '../../assets/icons/hip_flexors.png';
+// import muscle from '../../assets/icons/hip_flexors.png';
 
 import styles from './ExerciseListDetail.module.css';
 import { style } from '@mui/system';
-
+import { exerciseOptions, fetchData } from '../../utils/fetchData';
 
 export default function ExerciseListDetail() {
     const [exerciseDetail, setExerciseDetail] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const { id } = useParams();
+    const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`
 
     const singleExerciseFetch = async () => {
-        try {
-            setIsLoading(true);
-            const res = await fetch(`/api/exercises/${id}`);
-            if (!res.ok) {
-                throw new Error(res.status);
-            }
-            const { exercises } = await res.json();
-            // console.log(exercises);
-            setExerciseDetail(exercises);
-        } catch (err) {
-            console.log(err.message);
-        } finally {
-            setIsLoading(false);
-        }
+        const {exercises, error} = await fetchData(url, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false))
+        setExerciseDetail(exercises)
     };
 
     useEffect(() => {
@@ -48,7 +37,7 @@ export default function ExerciseListDetail() {
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
             <div className={styles.icon}>
-                <img src={`/src/assets/icons/${exerciseDetail.target}.png`} alt="" />
+                <img src={`/src/assets/icons/muscles/${exerciseDetail.target}.png`} alt="" />
             </div>
             <p>{exerciseDetail.target}</p>
         </div>;
@@ -58,7 +47,7 @@ export default function ExerciseListDetail() {
         return (
             <div key={key} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
-                    <img src={`/src/assets/icons/${muscleCleanName}.png`} alt="" />
+                    <img src={`/src/assets/icons/muscles/${muscleCleanName}.png`} alt="" />
                 </div>
                 <p>{secondaryMuscles[key]}</p>
             </div>);

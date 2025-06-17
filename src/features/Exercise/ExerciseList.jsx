@@ -2,29 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { Box, Stack, Button, TextField } from '@mui/material';
 import SearchExercises from '../../shared/ExerciseViewForm/SearchExercises';
 import FilterExercise from '../../shared/ExerciseViewForm/FilterExercise';
-import '../../service/service';
+// import '../../service/service';
 import ExerciseListCard from './ExerciseListCard';
-import styles from './Exercise.module.css';
-import { fetchData } from '../../utils/fetchData';
-const token = import.meta.env.EXERCISE_API_KEY;
-const host = 'exercisedb.p.rapidapi.com';
+import styles from './ExerciseList.module.css';
+import { fetchData, exerciseOptions } from '../../utils/fetchData';
+
+
 const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
 const mockBaseUrl = `/api/exercises`;
 
 export default function ExerciseList() {
     // --- useState ---
     const [exercisesList, setExercisesList] = useState([]);
-    const name = '';
-    const option = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': token,
-            'x-rapidapi-host': host
-        }
-    };
-
+    const [bodyPart, setBodyPart] = useState('all')
     const exerciseFetchData = async () => {
-        const { exercises, error } = await fetchData(mockBaseUrl, null);
+        const {exercises, error} = await fetchData(baseUrl, exerciseOptions);
         setExercisesList(exercises);
         console.log(error);
     };
@@ -32,7 +24,7 @@ export default function ExerciseList() {
     useEffect(() => {
         exerciseFetchData();
     }, []);
-    console.log(exercisesList);
+    // console.log(exercisesList.map(i => typeof i.id));
     return (
         <main>
             <section className={styles.exerciseSearch}>
@@ -42,7 +34,7 @@ export default function ExerciseList() {
                 />
             </section>
             <section className={styles.exerciseFilter}>
-                <FilterExercise />
+                <FilterExercise setBodyPart={setBodyPart}/>
             </section>
             {exercisesList.length === 0 ?
                 <h1>No exercise Found</h1>

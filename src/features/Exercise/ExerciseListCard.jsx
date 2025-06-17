@@ -8,8 +8,8 @@ export default function ExerciseListCard({ exercise }) {
     // --- useState ---
 
     return (
-        <section className={styles.exerciseSearch}>
-            <div className={styles.exerciseListCard}>
+        // <section className={styles.exerciseSearch}>
+            <article className={styles.exerciseListCard}>
                 <Link to={exercise.id}>
                     <img src={exercise.gifUrl} alt={`${exercise.name}`} />
                     <div className='badges'>
@@ -20,7 +20,7 @@ export default function ExerciseListCard({ exercise }) {
                     <h1>{exercise.name}</h1>
                     <p>Level: {exercise.difficulty}</p>
                 </Link>
-            </div>
-        </section>
+            </article>
+        // </section>
     );
 }

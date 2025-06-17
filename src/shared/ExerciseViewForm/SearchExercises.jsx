@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { fetchData, exerciseOptions } from '../../utils/fetchData';
 // import styles from './Exercise.module.css'
 
-// const baseUrl = 'https://exercisedb.p.rapidapi.com/exercises';
+const baseUrl = 'https://exercisedb.p.rapidapi.com/exercises';
 export default function SearchExercises({ setExercisesList }) {
     const [searchText, setSearchText] = useState('');
     // const [filterExercises, setFilterExercises] = useState([]);
 
     const searchDataFetch = async () => {
-        const { exercises } = await fetchData('/api/exercises', null);
+        const { exercises } = await fetchData(baseUrl, exerciseOptions);
         const searchExercises = exercises.filter(({ name, bodyPart, target, equipment }) => name.toLowerCase().includes(searchText)
             || bodyPart.toLowerCase().includes(searchText)
             || target.toLowerCase().includes(searchText)

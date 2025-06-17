@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { exerciseOptions, fetchData } from '../../utils/fetchData';
+import styles from './FilterExercise.module.css'
 
-export default function FilterExercise() {
+export default function FilterExercise({ bodyPart, setBodyPart }) {
+    const [bodyParts, setBodyParts] = useState([]);
+    useEffect(() => {
+        const fetchExerciseData = async () => {
+            const { exercises } = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
+            setBodyParts(['all', ...exercises]);
+        };
+
+        fetchExerciseData();
+    }, []);
     return (
-        <div>
-            <h1>Filtering Exercises</h1>
-            <h3>target muscle list</h3>
+        <div className={styles.bodyParts}>
+            {bodyParts.map(item =>
+                <button>
+                    <img src={`/src/assets/icons/bodyParts/${item.replace(/\s+/g, '_')}.png`} alt="" />
+                    <h3>{item}</h3>
+                </button>)}
         </div>
     );
 }

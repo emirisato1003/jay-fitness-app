@@ -1,13 +1,14 @@
 
 section{
-    margin-block: 2em;
+    margin-block: 1em;
 }
 
 section.exerciseSearch{
     margin-top: 0;
 }
 
-section.exerciseLists{
+.exerciseLists{
+    max-width: 1400px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

@@ -1,6 +1,7 @@
 
-const token = import.meta.env.EXERCISES_DATA_API_KEY;
+const token = import.meta.env.VITE_EXERCISES_API_KEY;
 // const host = 'exercisedb.p.rapidapi.com';
+
 export const exerciseOptions = {
     method: 'GET',
     headers: {
@@ -8,7 +9,6 @@ export const exerciseOptions = {
         'x-rapidapi-key': token,
     }
 };
-
 
 export const fetchData = async (url, options, onStart, onEnd) => {
     try {
@@ -18,7 +18,7 @@ export const fetchData = async (url, options, onStart, onEnd) => {
             throw new Error(res.status);
         }
         const data = await res.json();
-        return data;
+        return {exercises: data};
     } catch (err) {
         return { error: err.message };
     } finally {
