@@ -3,17 +3,23 @@ import { fetchData, exerciseOptions } from '../../utils/fetchData';
 // import styles from './Exercise.module.css'
 
 const baseUrl = 'https://exercisedb.p.rapidapi.com/exercises';
+
 export default function SearchExercises({ setExercisesList }) {
     const [searchText, setSearchText] = useState('');
     // const [filterExercises, setFilterExercises] = useState([]);
 
     const searchDataFetch = async () => {
-        const { exercises } = await fetchData(baseUrl, exerciseOptions);
-        const searchExercises = exercises.filter(({ name, bodyPart, target, equipment }) => name.toLowerCase().includes(searchText)
-            || bodyPart.toLowerCase().includes(searchText)
-            || target.toLowerCase().includes(searchText)
-            || equipment.toLowerCase().includes(searchText));
-        setExercisesList(searchExercises);
+        if (searchText) {
+            const { exercises } = await fetchData(baseUrl, exerciseOptions);
+            const searchExercises = exercises.filter(
+                ({ name, bodyPart, target, equipment, secondaryMuscle }) => name.toLowerCase().includes(searchText)
+                    || bodyPart.toLowerCase().includes(searchText)
+                    || target.toLowerCase().includes(searchText)
+                    || equipment.toLowerCase().includes(searchText)
+                // || secondaryMuscle.toLowerCase().includes(searchText)
+            );
+            setExercisesList(searchExercises);
+        }
     };
 
     useEffect(() => {
@@ -31,7 +37,7 @@ export default function SearchExercises({ setExercisesList }) {
     return (
         <form onSubmit={preventRefresh}>
             <input className="" type="text" placeholder='Search Exercises' onChange={(e) => setSearchText(e.target.value.toLowerCase())} value={searchText} />
-            <button onClick={() => setSearchText('')}>Clear</button>
+            <button onClick={() => setSearchText('')} disabled={searchText === ''}>Clear</button>
         </form>
     );
 };

@@ -27,7 +27,7 @@ const RightArrow = () => {
     );
 };
 
-const FilterExercise = ({ bodyPart, setBodyPart }) => {
+const FilterExercise = ({ setBodyPart }) => {
     const [bodyParts, setBodyParts] = useState([]);
     useEffect(() => {
         const fetchExerciseData = async () => {

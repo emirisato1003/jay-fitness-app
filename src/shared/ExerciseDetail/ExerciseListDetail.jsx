@@ -12,11 +12,11 @@ export default function ExerciseListDetail() {
     const [exerciseDetail, setExerciseDetail] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const { id } = useParams();
-    const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`
+    const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`;
 
     const singleExerciseFetch = async () => {
-        const {exercises, error} = await fetchData(url, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false))
-        setExerciseDetail(exercises)
+        const { exercises, error } = await fetchData(url, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
+        setExerciseDetail(exercises);
     };
 
     useEffect(() => {
@@ -53,9 +53,16 @@ export default function ExerciseListDetail() {
             </div>);
     });
 
+    // "feet", --- 'muscle'
+    // "grip muscles", -- 'muscle'
+    // "hands", -- 'muscle'
+
+
+    // 14:"serratus anterior" -- 'muscle'
+
     return (
         <div>
-            {isLoading ? <h1 style={{textAlign: 'center'}}>Loading...</h1> :
+            {isLoading ? <h1 style={{ textAlign: 'center' }}>Loading...</h1> :
                 <>
                     <Link className={styles.backToButton} to='/exercise'>&larr; Go back to Exercise List</Link>
                     <div className={styles.container}>
