@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { exerciseOptions, fetchData } from '../../utils/fetchData';
+import React, { useContext } from 'react';
 import styles from './FilterExercise.module.css';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
@@ -8,7 +7,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const arrowsStyles = {
     marginInline: '.5em'
-}
+};
 
 const LeftArrow = () => {
     const { scrollPrev } = useContext(VisibilityContext);
@@ -27,21 +26,12 @@ const RightArrow = () => {
     );
 };
 
-const FilterExercise = ({ setBodyPart }) => {
-    const [bodyParts, setBodyParts] = useState([]);
-    useEffect(() => {
-        const fetchExerciseData = async () => {
-            const { exercises } = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
-            setBodyParts(['all', ...exercises]);
-        };
-
-        fetchExerciseData();
-    }, []);
+const FilterExercise = ({ setBodyPart, bodyParts }) => {
     return (
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
             {bodyParts.map(item =>
                 <div aria-label='Body Part Categories' onClick={() => setBodyPart(item)} key={item.id} className={styles.bodyPart}>
-                    <img src={`/src/assets/icons/bodyParts/${item.replace(/\s+/g, '_')}.png`} alt="" />
+                    <img src={`/src/assets/icons/bodyParts/${item.replace(/\s+/g, '_')}.png`} alt={item} />
                     <h3>{item}</h3>
                 </div>)}
         </ScrollMenu>

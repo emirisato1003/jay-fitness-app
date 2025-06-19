@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import SearchExercises from '../../shared/ExerciseViewForm/SearchExercises';
-import FilterExercise from '../../shared/ExerciseViewForm/FilterExercise';
+import { useEffect, useState } from 'react';
 import ExerciseListCard from './ExerciseListCard';
+import ExerciseViewForm from '../../shared/ExerciseViewForm/ExerciseViewForm'
 // import '../../service/service';
 import { fetchData, exerciseOptions } from '../../utils/fetchData';
 
@@ -26,7 +25,6 @@ export default function Exercises() {
     const [errorMessage, setErrorMessage] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
 
-    console.log(bodyPart);
     /*** Fetch Data ***/
     const exerciseFetchData = async () => {
         setSearchParams({ page: 1 });
@@ -85,16 +83,7 @@ export default function Exercises() {
         <main>
             {!errorMessage ?
                 <>
-                    <section className={styles.exerciseSearch}>
-                        <SearchExercises
-                            exercisesList={exercisesList}
-                            setExercisesList={setExercisesList}
-                        />
-                    </section>
-                    <section className={styles.exerciseFilterCards}>
-                        <FilterExercise setBodyPart={setBodyPart} />
-                        <hr />
-                    </section>
+                    <ExerciseViewForm setBodyPart={setBodyPart} exercisesList={exercisesList} setExercisesList={setExercisesList} />
                     {exercisesList.length === 0 ?
                         <h1>No exercise Found</h1>
                         :

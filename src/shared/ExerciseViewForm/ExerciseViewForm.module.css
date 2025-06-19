@@ -2,3 +2,7 @@
 .button:disabled{
     background-color: var(--secondary-background-color);
 }
+
+.exerciseFilterCards{
+    max-width: clamp(300px, 80vw, 1200px);
+}
