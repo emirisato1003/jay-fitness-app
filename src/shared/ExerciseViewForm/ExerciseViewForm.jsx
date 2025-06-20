@@ -3,7 +3,7 @@ import { exerciseOptions, fetchData } from '../../utils/fetchData';
 import styles from './ExerciseViewForm.module.css';
 import FilterExercise from './FilterExercise';
 
-const ExerciseViewForm = ({ setExercisesList, setBodyPart, exercisesList, originalExerciseList }) => {
+const ExerciseViewForm = ({ setExercisesList, setBodyPart, exercisesList, originalExerciseList, setSearchParams }) => {
     const [bodyParts, setBodyParts] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [originalExercises, setOriginalExercises] = useState([]);
@@ -59,7 +59,7 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, exercisesList, origin
                 </form>
             </div>
             <div className={styles.exerciseFilterCards}>
-                <FilterExercise setBodyPart={setBodyPart} bodyParts={bodyParts} />
+                <FilterExercise setBodyPart={setBodyPart} bodyParts={bodyParts} setSearchParams={setSearchParams} />
                 <hr />
             </div>
         </section>

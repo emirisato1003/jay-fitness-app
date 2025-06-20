@@ -27,29 +27,33 @@ export default function Exercises() {
     const [errorMessage, setErrorMessage] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
 
+
     /*** Fetch Data ***/
-    const exerciseFetchData = useCallback(async () => {
+    const exerciseFetchData = async () => {
         setSearchParams({ page: 1 });
         let exercisesData = [];
-        exercisesData = await fetchData(bodyPart === 'all' ? `${baseUrl}?limit=0` : `${baseUrl}/bodyPart/${bodyPart}`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false))
-        
+        exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
+
         setErrorMessage(exercisesData.error);
         setExercisesList(exercisesData.exercises);
         setOriginalExercisesList(exercisesData.exercises);
         console.log('refetching...');
-    }, [bodyPart, baseUrl, exerciseOptions, setSearchParams, setIsLoading, setErrorMessage, setExercisesList, setOriginalExercisesList]);
+    };
 
     useEffect(() => {
-            exerciseFetchData();
-    }, [bodyPart]);
+        exerciseFetchData();
+    }, []);
+
+    /***Filter Exercise***/
+    const filteredExercise = exercisesList.filter(exercise => bodyPart === 'all' ? exercise : bodyPart === exercise.bodyPart);
 
     /*** Pagination ***/
     const itemsPerPage = 10;
     const currentPage = parseInt(searchParams.get('page') || '1');
     const indexOfFirstExercise = itemsPerPage * (currentPage - 1);
     const indexOfLastExercise = currentPage * itemsPerPage;
-    const totalPages = Math.ceil(exercisesList.length / itemsPerPage);
-    const currentExercises = exercisesList.slice(indexOfFirstExercise, indexOfLastExercise);
+    const totalPages = Math.ceil(filteredExercise.length / itemsPerPage);
+    const currentExercises = filteredExercise.slice(indexOfFirstExercise, indexOfLastExercise);
 
     const handleFirstPage = () => {
         if (currentPage > 1) {
@@ -83,10 +87,10 @@ export default function Exercises() {
         <main>
             {!errorMessage ?
                 <>
-                    <ExerciseViewForm setBodyPart={setBodyPart} exercisesList={exercisesList} setExercisesList={setExercisesList} originalExerciseList={originalExerciseList} />
+                    <ExerciseViewForm setBodyPart={setBodyPart} exercisesList={exercisesList} setExercisesList={setExercisesList} originalExerciseList={originalExerciseList} setSearchParams={setSearchParams} />
                     {isLoading
                         ? <h1>Loading...</h1>
-                        : exercisesList.length === 0
+                        : filteredExercise.length === 0
                             ? <h1>No exercise Found</h1>
                             : <>
                                 <section className={styles.exercises}>
@@ -98,6 +102,7 @@ export default function Exercises() {
                                                 exercise={exercise}
                                             />)}
                                     </div>
+                                    {/*** pagination ***/}
                                     <div className={styles.paginationControls}>
                                         <div>
                                             <button onClick={() => handleFirstPage()} disabled={currentPage === 1}>
@@ -109,7 +114,7 @@ export default function Exercises() {
                                         </div>
                                         <span>{currentPage} of {totalPages}</span>
                                         <div>
-                                            <button onClick={() => handleNextPage()}>
+                                            <button onClick={() => handleNextPage()} disabled={currentPage === totalPages}>
                                                 <MdKeyboardArrowRight className={styles.paginateIcon} />
                                             </button>
                                             <button onClick={() => handleLastPage()} disabled={currentPage === totalPages}>
