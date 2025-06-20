@@ -15,25 +15,22 @@ export default function ExerciseListDetail() {
     const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`;
 
     const singleExerciseFetch = async () => {
-        const { exercises, error } = await fetchData(url, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
-        setExerciseDetail(exercises);
+        const { data, error } = await fetchData(url, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
+        setExerciseDetail(data);
+        console.log(data)
     };
-
+    
     useEffect(() => {
         singleExerciseFetch();
     }, []);
+    // if no data, return loading...
+    if(!exerciseDetail.instructions || !exerciseDetail.secondaryMuscles) return <div>Loading...</div>
 
-    const instructions = exerciseDetail?.instructions || exerciseDetail;
-    const secondaryMuscles = exerciseDetail?.secondaryMuscles || exerciseDetail;
-    // const target = exerciseDetail?.target || exerciseDetail;
-    console.log(exerciseDetail);
-
-    const instructionElements = Object.keys(instructions).map(key => (<li key={key}>
-        {instructions[key]}
+    const instructionElements = Object.keys(exerciseDetail.instructions).map(key => (<li key={key}>
+        {exerciseDetail.instructions[key]}
     </li>
     ));
 
-    // const targetCleanName = exerciseDetail.target.replace(/\s+/g, '_');
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
             <div className={styles.icon}>
@@ -42,15 +39,14 @@ export default function ExerciseListDetail() {
             <p>{exerciseDetail.target}</p>
         </div>;
 
-    const secondaryMusclesElements = Object.keys(secondaryMuscles).map(key => {
-        const muscleCleanName = secondaryMuscles[key].toLowerCase().replace(/\s+/g, '_');
-        console.log(`/src/assets/icons/muscles/${muscleCleanName || 'muscle'}.png `);
+    const secondaryMusclesElements = Object.keys(exerciseDetail.secondaryMuscles).map(key => {
+        const muscleCleanName = exerciseDetail.secondaryMuscles[key].toLowerCase().replace(/\s+/g, '_');
         return (
             <div key={key} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
                     <img src={`/src/assets/icons/muscles/${muscleCleanName || 'muscle'}.png `} alt="" />
                 </div>
-                <p>{secondaryMuscles[key]}</p>
+                <p>{exerciseDetail.secondaryMuscles[key]}</p>
             </div>);
     });
 
@@ -60,7 +56,7 @@ export default function ExerciseListDetail() {
 
 
     // 14:"serratus anterior" -- 'muscle'
-    const activeStyles = { color: 'var(--primary-color)' };
+    const activeStyles = { textDecoration: 'underline' };
     return (
         <div>
             {isLoading ? <h1 style={{ textAlign: 'center' }}>Loading...</h1> :
@@ -91,10 +87,11 @@ export default function ExerciseListDetail() {
                             </div>
                         </div>
                     </div>
-                    <nav className="relatedWorkouts">
-                        <NavLink style={({ isActive }) => isActive ? activeStyles : null} to='relatedVideos'>Videos</NavLink>
+                    <hr />
+                    <nav className={styles.relatedWorkoutNav}>
+                        <NavLink style={({ isActive }) => isActive ? activeStyles : null} to='.' end>Videos</NavLink>
                         <NavLink style={({ isActive }) => isActive ? activeStyles : null} to='relatedLists'>Related Workouts</NavLink>
-                        <Outlet />
+                        <Outlet context={{ exerciseDetail }} />
                     </nav>
                 </>
             }

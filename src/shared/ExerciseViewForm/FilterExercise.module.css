@@ -29,7 +29,7 @@
     background-color: var(--accent-color);
     color: var(--white-color);
 }
-
+/* 
 .arrows{
     align-self: center;
     cursor: pointer;
@@ -38,7 +38,7 @@
 
 .arrows:hover{
     color: var(--primary-color);
-}
+} */
 
 @media screen and (max-width: 600px) {
     .bodyPart{

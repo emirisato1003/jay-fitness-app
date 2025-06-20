@@ -34,8 +34,8 @@ export default function Exercises() {
         let exercisesData = [];
         exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         setErrorMessage(exercisesData.error);
-        setExercisesList(exercisesData.exercises);
-        setOriginalExercisesList(exercisesData.exercises);
+        setExercisesList(exercisesData.data);
+        setOriginalExercisesList(exercisesData.data);
         console.log('refetching...');
     }
 

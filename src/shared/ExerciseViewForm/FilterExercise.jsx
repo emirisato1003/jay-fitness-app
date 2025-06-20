@@ -12,7 +12,7 @@ const arrowsStyles = {
 const LeftArrow = () => {
     const { scrollPrev } = useContext(VisibilityContext);
     return (
-        <div aria-label='left arrow button' style={arrowsStyles} onClick={() => scrollPrev()} className={styles.arrows}>
+        <div aria-label='left arrow button' style={arrowsStyles} onClick={() => scrollPrev()} className='arrows'>
             <MdOutlineKeyboardArrowLeft />
         </div>
     );
@@ -20,7 +20,7 @@ const LeftArrow = () => {
 const RightArrow = () => {
     const { scrollNext } = useContext(VisibilityContext);
     return (
-        <div aria-label='right arrow button' style={arrowsStyles} onClick={() => scrollNext()} className={styles.arrows}>
+        <div aria-label='right arrow button' style={arrowsStyles} onClick={() => scrollNext()} className='arrows'>
             <MdOutlineKeyboardArrowRight />
         </div>
     );
