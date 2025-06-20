@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DetailRelatedVideo from '../RelatedExercise/DetailRelatedVideo';
-import DetailRelatedList from '../RelatedExercise/DetailRelatedList';
+import DetailRelatedList from '../RelatedExercise/RelatedList/DetailRelatedList';
 import { Outlet, useParams, Link, NavLink } from 'react-router';
 // import muscle from '../../assets/icons/hip_flexors.png';
 
@@ -17,14 +17,14 @@ export default function ExerciseListDetail() {
     const singleExerciseFetch = async () => {
         const { data, error } = await fetchData(url, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         setExerciseDetail(data);
-        console.log(data)
+        console.log(data);
     };
-    
+
     useEffect(() => {
         singleExerciseFetch();
     }, []);
     // if no data, return loading...
-    if(!exerciseDetail.instructions || !exerciseDetail.secondaryMuscles) return <div>Loading...</div>
+    if (!exerciseDetail.instructions || !exerciseDetail.secondaryMuscles) return <div>Loading...</div>;
 
     const instructionElements = Object.keys(exerciseDetail.instructions).map(key => (<li key={key}>
         {exerciseDetail.instructions[key]}

@@ -2,6 +2,7 @@ import { useEffect, useState} from 'react';
 import { fetchData, youtubeOptions } from '../../utils/fetchData';
 import { useOutletContext } from 'react-router';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
+import styles from './DetailRelatedVideo.module.css'
 
 export default function DetailRelatedVideo() {
     const { exerciseDetail } = useOutletContext();
@@ -19,12 +20,12 @@ export default function DetailRelatedVideo() {
     }, []);
     console.log(exerciseVideos.map(video => video.video));
     return (
-        <div className="videoContainer">
+        <div className={styles.cardContainer}>
             {exerciseVideos
                 .slice(0, 3)
                 .map(item => {
                     return (
-                        <div key={item.id} className='videoCard'>
+                        <div key={item.id} className={styles.videoCard}>
                             <a href={`https://www.youtube.com/watch?v=${item.video.videoId}`} target='_blank'>
                                 <img src={item.video.thumbnails[0].url} alt={item.video.title} />
                             </a>
