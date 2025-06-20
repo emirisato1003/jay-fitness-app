@@ -83,3 +83,16 @@
 .icon img{
     transform: translate(8px,8px);
 }
+
+.relatedWorkoutNav{
+    display: inline;
+}
+
+.relatedWorkoutNav a{
+    margin-left: 1em;
+    font-size: 1.3rem;
+}
+
+.relatedWorkoutNav a:hover{
+    text-decoration: underline;
+}

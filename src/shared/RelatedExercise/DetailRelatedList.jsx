@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import RelatedListTarget from './RelatedListTarget';
 import RelatedListEquip from './RelatedListEquip';
+import { fetchData, youtubeOptions } from '../../utils/fetchData';
+import { useOutletContext } from 'react-router';
 
 export default function DetailRelatedList() {
-    return (
-        <div>
-            <h2>similar target workouts </h2>
-            <RelatedListTarget />
-            <h2>similar equipment workouts</h2>
-            <RelatedListEquip />
-        </div>
-    );
+    return <div>
+        <RelatedListTarget />
+        <RelatedListEquip />
+    </div>;
 }

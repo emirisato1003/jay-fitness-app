@@ -169,6 +169,18 @@ li .icon{
 /***exercise page***/
 
 
+/***Scroll styling***/
+
+.arrows{
+    align-self: center;
+    cursor: pointer;
+    font-size: clamp(.7rem, 5vw, 2rem);
+}
+
+.arrows:hover{
+    color: var(--primary-color);
+}
+
 @media screen and (max-width: 480px) {
     .features{
       max-width: 350px;

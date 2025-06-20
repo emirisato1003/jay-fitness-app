@@ -19,7 +19,7 @@ function App() {
           <Route path='about' element={<About />} />
           <Route path='exercise' element={<ExerciseList />} />
           <Route path='exercise/:id' element={<ExerciseListDetail />}>
-            <Route path='relatedVideos' element={<DetailRelatedVideo />} />
+            <Route index element={<DetailRelatedVideo />} />
             <Route path='relatedLists' element={<DetailRelatedList />} />
           </Route>
         </Route>
