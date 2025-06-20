@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DetailRelatedVideo from '../RelatedExercise/DetailRelatedVideo';
 import DetailRelatedList from '../RelatedExercise/DetailRelatedList';
-import { Outlet, useParams, Link } from 'react-router';
+import { Outlet, useParams, Link, NavLink } from 'react-router';
 // import muscle from '../../assets/icons/hip_flexors.png';
 
 import styles from './ExerciseListDetail.module.css';
@@ -44,6 +44,7 @@ export default function ExerciseListDetail() {
 
     const secondaryMusclesElements = Object.keys(secondaryMuscles).map(key => {
         const muscleCleanName = secondaryMuscles[key].toLowerCase().replace(/\s+/g, '_');
+        console.log(`/src/assets/icons/muscles/${muscleCleanName || 'muscle'}.png `)
         return (
             <div key={key} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
@@ -90,7 +91,9 @@ export default function ExerciseListDetail() {
                             </div>
                         </div>
                     </div>
-                    <div className="relatedList">
+                    <div className="relatedWorkouts">
+                        <NavLink to='relatedVideos'>Videos</NavLink>
+                        <NavLink to='relatedLists'>Related Workouts</NavLink>
                         <Outlet />
                     </div>
                 </>

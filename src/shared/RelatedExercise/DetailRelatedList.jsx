@@ -5,8 +5,9 @@ import RelatedListEquip from './RelatedListEquip';
 export default function DetailRelatedList() {
     return (
         <div>
-            <h1>Related workout list goes here</h1>
+            <h2>similar target workouts </h2>
             <RelatedListTarget />
+            <h2>similar equipment workouts</h2>
             <RelatedListEquip />
         </div>
     );

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import ExerciseListCard from './ExerciseListCard';
-import ExerciseViewForm from '../../shared/ExerciseViewForm/ExerciseViewForm'
+import ExerciseListCard from '../features/Exercise/ExerciseListCard';
+import ExerciseViewForm from '../shared/ExerciseViewForm/ExerciseViewForm';
 // import '../../service/service';
-import { fetchData, exerciseOptions } from '../../utils/fetchData';
+import { fetchData, exerciseOptions } from '../utils/fetchData';
 
 import styles from './Exercises.module.css';
 
@@ -18,6 +18,7 @@ const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
 // const mockBaseUrl = `/api/exercises`;
 
 export default function Exercises() {
+    
     /*** useState ***/
     const [exercisesList, setExercisesList] = useState([]);
     const [bodyPart, setBodyPart] = useState('all');
@@ -30,9 +31,9 @@ export default function Exercises() {
         setSearchParams({ page: 1 });
         let exercisesData = [];
         if (bodyPart === 'all') {
-            exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
+            exercisesData = await fetchData(`${baseUrl}?limit=${itemsPerPage}&offset=${indexOfFirstExercise}`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         } else {
-            exercisesData = await fetchData(`${baseUrl}/bodyPart/${bodyPart}?limit=0`, exerciseOptions);
+            exercisesData = await fetchData(`${baseUrl}/bodyPart/${bodyPart}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         }
         setErrorMessage(exercisesData.error);
         setExercisesList(exercisesData.exercises);
@@ -84,40 +85,42 @@ export default function Exercises() {
             {!errorMessage ?
                 <>
                     <ExerciseViewForm setBodyPart={setBodyPart} exercisesList={exercisesList} setExercisesList={setExercisesList} />
-                    {exercisesList.length === 0 ?
-                        <h1>No exercise Found</h1>
-                        :
-                        <>
-                            <section className={styles.exercises}>
-                                <h1 style={{ margin: '0 0 .7em 3em' }}>{bodyPart} Exercises</h1>
-                                <div className={styles.exerciseLists}>
-                                    {currentExercises.map(exercise =>
-                                        <ExerciseListCard
-                                            key={exercise.id}
-                                            exercise={exercise}
-                                        />)}
-                                </div>
-                                <div className={styles.paginationControls}>
-                                    <div>
-                                        <button onClick={() => handleFirstPage()} disabled={currentPage === 1}>
-                                            <MdKeyboardDoubleArrowLeft className={styles.paginateIcon} />
-                                        </button>
-                                        <button onClick={() => handlePreviousPage()} disabled={currentPage === 1}>
-                                            <MdKeyboardArrowLeft className={styles.paginateIcon} />
-                                        </button>
+                    {isLoading
+                        ? <h1>Loading...</h1>
+                        : exercisesList.length === 0
+                            ? <h1>No exercise Found</h1>
+                            : <>
+                                <section className={styles.exercises}>
+                                    <h1 style={{ margin: '0 0 .7em 3em' }}>{bodyPart} Exercises</h1>
+                                    <div className={styles.exerciseLists}>
+                                        {currentExercises.map(exercise =>
+                                            <ExerciseListCard
+                                                key={exercise.id}
+                                                exercise={exercise}
+                                            />)}
                                     </div>
-                                    <span>{currentPage} of {totalPages}</span>
-                                    <div>
-                                        <button onClick={() => handleNextPage()} disabled={currentPage === totalPages}>
-                                            <MdKeyboardArrowRight className={styles.paginateIcon} />
-                                        </button>
-                                        <button onClick={() => handleLastPage()} disabled={currentPage === totalPages}>
-                                            <MdKeyboardDoubleArrowRight className={styles.paginateIcon} />
-                                        </button>
+                                    <div className={styles.paginationControls}>
+                                        <div>
+                                            <button onClick={() => handleFirstPage()} disabled={currentPage === 1}>
+                                                <MdKeyboardDoubleArrowLeft className={styles.paginateIcon} />
+                                            </button>
+                                            <button onClick={() => handlePreviousPage()} disabled={currentPage === 1}>
+                                                <MdKeyboardArrowLeft className={styles.paginateIcon} />
+                                            </button>
+                                        </div>
+                                        <span>{currentPage} of {totalPages}</span>
+                                        <div>
+                                            <button onClick={() => handleNextPage()} disabled={currentPage === totalPages}>
+                                                <MdKeyboardArrowRight className={styles.paginateIcon} />
+                                            </button>
+                                            <button onClick={() => handleLastPage()} disabled={currentPage === totalPages}>
+                                                <MdKeyboardDoubleArrowRight className={styles.paginateIcon} />
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </section>
-                        </>
+                                </section>
+                            </>
+
                     }
                 </>
                 /***Error Message***/
