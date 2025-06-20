@@ -29,16 +29,15 @@ export default function Exercises() {
 
 
     /*** Fetch Data ***/
-    const exerciseFetchData = async () => {
+    const exerciseFetchData =async () => {
         setSearchParams({ page: 1 });
         let exercisesData = [];
         exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
-
         setErrorMessage(exercisesData.error);
         setExercisesList(exercisesData.exercises);
         setOriginalExercisesList(exercisesData.exercises);
         console.log('refetching...');
-    };
+    }
 
     useEffect(() => {
         exerciseFetchData();
@@ -87,7 +86,7 @@ export default function Exercises() {
         <main>
             {!errorMessage ?
                 <>
-                    <ExerciseViewForm setBodyPart={setBodyPart} exercisesList={filteredExercise} setExercisesList={setExercisesList} originalExerciseList={originalExerciseList} setSearchParams={setSearchParams} />
+                    <ExerciseViewForm setBodyPart={setBodyPart} filteredExercise={filteredExercise} setExercisesList={setExercisesList} originalExerciseList={originalExerciseList} setSearchParams={setSearchParams} />
                     {isLoading
                         ? <h1>Loading...</h1>
                         : filteredExercise.length === 0
