@@ -24,8 +24,8 @@ export default function DetailRelatedVideo() {
                 .slice(0, 3)
                 .map(item => {
                     return (
-                        <div>
-                            <a href={`https://www.youtube.com/watch?v=${item.video.videoId}`}>
+                        <div key={item.id} className='videoCard'>
+                            <a href={`https://www.youtube.com/watch?v=${item.video.videoId}`} target='_blank'>
                                 <img src={item.video.thumbnails[0].url} alt={item.video.title} />
                             </a>
                         </div>
