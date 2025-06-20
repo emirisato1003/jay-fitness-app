@@ -44,7 +44,7 @@ export default function ExerciseListDetail() {
 
     const secondaryMusclesElements = Object.keys(secondaryMuscles).map(key => {
         const muscleCleanName = secondaryMuscles[key].toLowerCase().replace(/\s+/g, '_');
-        console.log(`/src/assets/icons/muscles/${muscleCleanName || 'muscle'}.png `)
+        console.log(`/src/assets/icons/muscles/${muscleCleanName || 'muscle'}.png `);
         return (
             <div key={key} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
@@ -60,7 +60,7 @@ export default function ExerciseListDetail() {
 
 
     // 14:"serratus anterior" -- 'muscle'
-
+    const activeStyles = { color: 'var(--primary-color)' };
     return (
         <div>
             {isLoading ? <h1 style={{ textAlign: 'center' }}>Loading...</h1> :
@@ -91,11 +91,11 @@ export default function ExerciseListDetail() {
                             </div>
                         </div>
                     </div>
-                    <div className="relatedWorkouts">
-                        <NavLink to='relatedVideos'>Videos</NavLink>
-                        <NavLink to='relatedLists'>Related Workouts</NavLink>
+                    <nav className="relatedWorkouts">
+                        <NavLink style={({ isActive }) => isActive ? activeStyles : null} to='relatedVideos'>Videos</NavLink>
+                        <NavLink style={({ isActive }) => isActive ? activeStyles : null} to='relatedLists'>Related Workouts</NavLink>
                         <Outlet />
-                    </div>
+                    </nav>
                 </>
             }
         </div>

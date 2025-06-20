@@ -3,12 +3,11 @@ import { exerciseOptions, fetchData } from '../../utils/fetchData';
 import styles from './ExerciseViewForm.module.css';
 import FilterExercise from './FilterExercise';
 
-const ExerciseViewForm = ({ setExercisesList, setBodyPart, exercisesList }) => {
+const ExerciseViewForm = ({ setExercisesList, setBodyPart, exercisesList, originalExerciseList }) => {
     const [bodyParts, setBodyParts] = useState([]);
     const [searchText, setSearchText] = useState('');
-
+    const [originalExercises, setOriginalExercises] = useState([]);
     useEffect(() => {
-        
         const fetchBodyPartLists = async () => {
             const { exercises } = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
             setBodyParts(['all', ...exercises]);
@@ -18,9 +17,8 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, exercisesList }) => {
     }, []);
 
     const handleSearch = async () => {
-        console.log(exercisesList)
         if (searchText) {
-            const searchExercises = exercisesList.filter(
+            const searchExercises = originalExerciseList.filter(
                 ({ name, bodyPart, target, equipment }) =>
                     name.toLowerCase().includes(searchText)
                     || bodyPart.toLowerCase().includes(searchText)
@@ -30,6 +28,8 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, exercisesList }) => {
 
             window.scrollTo({ top: 1800, left: 100, behavior: 'smooth' });
             setExercisesList(searchExercises);
+        }else{
+            setExercisesList(originalExerciseList)
         }
     };
 
@@ -45,12 +45,17 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, exercisesList }) => {
     const preventRefresh = (e) => [
         e.preventDefault()
     ];
+
+    const handleClear = () => {
+        setSearchText('');
+        setOriginalExercises(originalExerciseList);
+    };
     return (
         <section>
             <div className={styles.searchExercises}>
                 <form onSubmit={preventRefresh}>
                     <input className="" type="text" placeholder='Search Exercises' onChange={(e) => setSearchText(e.target.value.toLowerCase())} value={searchText} />
-                    <button onClick={() => setSearchText('')} disabled={searchText === ''}>CLEAR</button>
+                    <button onClick={handleClear} disabled={searchText === ''}>CLEAR</button>
                 </form>
             </div>
             <div className={styles.exerciseFilterCards}>

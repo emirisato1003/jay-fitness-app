@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ExerciseListCard from '../features/Exercise/ExerciseListCard';
 import ExerciseViewForm from '../shared/ExerciseViewForm/ExerciseViewForm';
 // import '../../service/service';
@@ -18,30 +18,29 @@ const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
 // const mockBaseUrl = `/api/exercises`;
 
 export default function Exercises() {
-    
+
     /*** useState ***/
     const [exercisesList, setExercisesList] = useState([]);
+    const [originalExerciseList, setOriginalExercisesList] = useState([]);
     const [bodyPart, setBodyPart] = useState('all');
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
 
     /*** Fetch Data ***/
-    const exerciseFetchData = async () => {
+    const exerciseFetchData = useCallback(async () => {
         setSearchParams({ page: 1 });
         let exercisesData = [];
-        if (bodyPart === 'all') {
-            exercisesData = await fetchData(`${baseUrl}?limit=${itemsPerPage}&offset=${indexOfFirstExercise}`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
-        } else {
-            exercisesData = await fetchData(`${baseUrl}/bodyPart/${bodyPart}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
-        }
+        exercisesData = await fetchData(bodyPart === 'all' ? `${baseUrl}?limit=0` : `${baseUrl}/bodyPart/${bodyPart}`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false))
+        
         setErrorMessage(exercisesData.error);
         setExercisesList(exercisesData.exercises);
+        setOriginalExercisesList(exercisesData.exercises);
         console.log('refetching...');
-    };
+    }, [bodyPart, baseUrl, exerciseOptions, setSearchParams, setIsLoading, setErrorMessage, setExercisesList, setOriginalExercisesList]);
 
     useEffect(() => {
-        exerciseFetchData();
+            exerciseFetchData();
     }, [bodyPart]);
 
     /*** Pagination ***/
@@ -84,7 +83,7 @@ export default function Exercises() {
         <main>
             {!errorMessage ?
                 <>
-                    <ExerciseViewForm setBodyPart={setBodyPart} exercisesList={exercisesList} setExercisesList={setExercisesList} />
+                    <ExerciseViewForm setBodyPart={setBodyPart} exercisesList={exercisesList} setExercisesList={setExercisesList} originalExerciseList={originalExerciseList} />
                     {isLoading
                         ? <h1>Loading...</h1>
                         : exercisesList.length === 0
@@ -110,7 +109,7 @@ export default function Exercises() {
                                         </div>
                                         <span>{currentPage} of {totalPages}</span>
                                         <div>
-                                            <button onClick={() => handleNextPage()} disabled={currentPage === totalPages}>
+                                            <button onClick={() => handleNextPage()}>
                                                 <MdKeyboardArrowRight className={styles.paginateIcon} />
                                             </button>
                                             <button onClick={() => handleLastPage()} disabled={currentPage === totalPages}>
