@@ -1,0 +1,44 @@
+
+.videoContainer{
+    /* margin: 2em 3em; */
+    max-width: clamp(400px, 90vw, 1500px);
+    margin: 0 auto;
+}
+
+.videoContainer h3{
+    margin: 1em;
+    font-weight: 200;
+    font-size: 1.4rem;
+}
+
+.videoContainer h3 span{
+    color: var(--primary-color);
+}
+
+.cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 2em;
+    row-gap: 1em;
+    margin-bottom: 3em;
+}
+
+.videoCard{
+    max-width: clamp(250px, 90vw, 360px);
+}
+
+.videoCard img{
+    border-radius: 10px;
+    transition: all .3s ease;
+    max-width: clamp(250px, 90vw, 360px);
+}
+
+.videoCard a{
+    color: var(--white-color);
+    text-decoration: none;
+}
+
+.videoCard img:hover{
+    transform: translateY(-5px);
+}

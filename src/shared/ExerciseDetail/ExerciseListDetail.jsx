@@ -91,8 +91,9 @@ export default function ExerciseListDetail() {
                     <nav className={styles.relatedWorkoutNav}>
                         <NavLink style={({ isActive }) => isActive ? activeStyles : null} to='.' end>Videos</NavLink>
                         <NavLink style={({ isActive }) => isActive ? activeStyles : null} to='relatedLists'>Related Workouts</NavLink>
-                        <Outlet context={{ exerciseDetail }} />
                     </nav>
+                    <hr />
+                    <Outlet context={{ exerciseDetail }} />
                 </>
             }
         </div>

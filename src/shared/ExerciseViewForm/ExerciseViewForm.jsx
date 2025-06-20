@@ -29,7 +29,7 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
             window.scrollTo({ top: 1800, left: 100, behavior: 'smooth' });
             setExercisesList(searchExercises);
         }else{
-            setExercisesList(originalExerciseList)
+            setExercisesList(originalExercises)
         }
     };
 
