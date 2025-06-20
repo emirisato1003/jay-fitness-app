@@ -1,4 +1,9 @@
 
+.searchExercises{
+    justify-self: center;
+    margin-bottom: 2em;
+}
+
 .button:disabled{
     background-color: var(--secondary-background-color);
 }
