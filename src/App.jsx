@@ -6,7 +6,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import ExerciseList from './pages/Exercises';
 import ExerciseListDetail from './shared/ExerciseDetail/ExerciseListDetail';
-import DetailRelatedList from './shared/RelatedExercise/RelatedList/DetailRelatedList';
+// import DetailRelatedList from './shared/RelatedExercise/DetailRelatedList';
+import DetailRelatedList from './shared/RelatedExercise/DetailRelatedList';
 import DetailRelatedVideo from './shared/RelatedExercise/DetailRelatedVideo';
 
 function App() {

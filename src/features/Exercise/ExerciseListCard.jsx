@@ -4,7 +4,7 @@ import styles from './ExerciseListCard.module.css';
 import { Link } from 'react-router';
 
 export default function ExerciseListCard({ exercise }) {
-    console.log(exercise);
+    // console.log(exercise);
     // --- useState ---
 
     return (

@@ -1,0 +1,38 @@
+
+.targetMuscleCardContainer{
+    margin: 2em auto;
+    max-width: 1500px
+}
+
+article.targetMusclesCard{
+    /* max-width: ; */
+}
+
+article.targetMusclesCard a{
+    color: var(--white-color);
+    text-decoration: none;
+}
+
+article.targetMusclesCard h3{
+    font-size: 1rem;
+    font-weight: 200;
+}
+
+article.targetMusclesCard img{
+    max-width: 250px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 480px){
+    article.targetMusclesCard{
+    max-width: 125px;
+}
+    article.targetMusclesCard img{
+        max-width: 100px;
+    }
+
+    article.targetMusclesCard h3{
+    font-size: .7rem;
+    font-weight: 100;
+}
+}

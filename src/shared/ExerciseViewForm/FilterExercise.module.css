@@ -3,14 +3,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content:center;
     height: 100px;
     width: 100px;
-    margin-inline: 1em;
+    margin: 0 2.2em 1em 0;
     /* background-color: var(--accent-color); */
     background-color: var(--white-color);
     color: var(--accent-color);
-    padding: 1em;
+    /* padding: 1em; */
     border-radius: 6px;
     cursor: pointer;
     transition: all .3s ease;
