@@ -33,6 +33,7 @@ export default function DetailRelatedList() {
     console.log(targetMuscles);
     return (
         <div className={styles.targetMuscleCardContainer}>
+            <h3>Similar target muscles exercises </h3>
             <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
                 {targetMuscles.map(exercise =>
                     <article className={styles.targetMusclesCard}>
@@ -44,7 +45,7 @@ export default function DetailRelatedList() {
                 )}
             </ScrollMenu>
             <div>
-                <h1>Related Equip workout list goes here</h1>
+                <h3>same equipment workout</h3>
             </div>
         </div>);
 }
