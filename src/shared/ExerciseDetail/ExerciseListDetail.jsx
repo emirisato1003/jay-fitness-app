@@ -32,7 +32,11 @@ export default function ExerciseListDetail() {
     useEffect(() => {
         fetchExerciseData();
     }, []);
-    
+
+    const cleanName = (muscle) => {
+        return muscle.toLowerCase().replace(/\s+/g, '_');
+    };
+
     if (!exerciseDetail.instructions || !exerciseDetail.secondaryMuscles) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
 
     const instructionElements = Object.keys(exerciseDetail.instructions).map(key => (<li key={key}>
@@ -43,17 +47,16 @@ export default function ExerciseListDetail() {
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
             <div className={styles.icon}>
-                <img src={`/src/assets/icons/muscles/${exerciseDetail.target || 'muscle'}.png`} alt="" />
+                <img src={`/src/assets/icons/muscles/${cleanName(exerciseDetail.target)}.png`} alt="" />
             </div>
             <p>{exerciseDetail.target}</p>
         </div>;
 
     const secondaryMusclesElements = Object.keys(exerciseDetail.secondaryMuscles).map(key => {
-        const muscleCleanName = exerciseDetail.secondaryMuscles[key].toLowerCase().replace(/\s+/g, '_');
         return (
             <div key={key} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
-                    <img src={`/src/assets/icons/muscles/${muscleCleanName || 'muscle'}.png `} alt="" />
+                    <img src={`/src/assets/icons/muscles/${cleanName(exerciseDetail.secondaryMuscles[key])}.png `} alt="" />
                 </div>
                 <p>{exerciseDetail.secondaryMuscles[key]}</p>
             </div>);

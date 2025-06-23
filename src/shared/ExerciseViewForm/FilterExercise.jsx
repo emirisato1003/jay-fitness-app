@@ -26,13 +26,17 @@ const RightArrow = () => {
     );
 };
 
-const FilterExercise = ({ setBodyPart, bodyParts, setSearchParams }) => {
+const FilterExercise = ({ setBodyPart, bodyParts, setSearchParams, exerciseSectionRef }) => {
     return (
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
             {bodyParts.map(item => {
                 const handleFilter = () => {
                     setBodyPart(item);
                     setSearchParams({ page: 1 });
+                    exerciseSectionRef.current?.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 };
                 return (
                     <div aria-label='Body Part Categories' onClick={handleFilter} key={item.id} className={styles.bodyPart}>
