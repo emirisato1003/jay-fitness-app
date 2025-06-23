@@ -64,10 +64,10 @@ button:disabled{
     border-radius: 20px;
 }
 
-.categoryBadge{
+/* .categoryBadge{
     margin-right: 6px;
     background-color: var(--brown-color);
-}
+} */
 
 .targetBadge{
     margin-right: 6px;

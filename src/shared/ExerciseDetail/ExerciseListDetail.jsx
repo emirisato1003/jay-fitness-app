@@ -83,11 +83,11 @@ export default function ExerciseListDetail() {
                             <div className={styles.targetMuscles}>
                                 <div className={styles.muscles}>
                                     <div className={styles.target}>
-                                        <h3>target muscles</h3>
+                                        <h2>target muscles</h2>
                                         {mainMuscleElements}
                                     </div>
                                     <div>
-                                        <h3>secondary target muscle</h3>
+                                        <h2>secondary target muscle</h2>
                                         <div className={styles.secondaryTarget}>
                                             {secondaryMusclesElements}
                                         </div>

@@ -11,9 +11,8 @@ export default function ExerciseListCard({ exercise }) {
         // <section className={styles.exerciseSearch}>
             <article className={styles.exerciseListCard}>
                 <Link to={exercise.id}>
-                    <img src={exercise.gifUrl} alt={`${exercise.name}`} />
+                    <img src={exercise.gifUrl} alt={`gif image of ${exercise.name}`} />
                     <div className='badges'>
-                        <span className='categoryBadge badge'>{exercise.category}</span>
                         <span className='targetBadge badge'>{exercise.target}</span>
                         <span className='bodyPartBadge badge'>{exercise.bodyPart}</span>
                     </div>

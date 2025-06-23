@@ -1,38 +1,62 @@
 
-.targetMuscleCardContainer{
+.cardContainer{
     margin: 2em auto;
-    max-width: 1500px
+    max-width: 1500px;
 }
 
-article.targetMusclesCard{
-    /* max-width: ; */
-}
-
-article.targetMusclesCard a{
-    color: var(--white-color);
-    text-decoration: none;
-}
-
-article.targetMusclesCard h3{
-    font-size: 1rem;
+.cardContainer h2{
+    justify-self: start;
+    margin: 1em 0 1em 1em;
     font-weight: 200;
 }
 
-article.targetMusclesCard img{
-    max-width: 250px;
-    border-radius: 10px;
+.cardContainer h2 span{
+    color:lightblue;
 }
 
-@media screen and (max-width: 480px){
-    article.targetMusclesCard{
-    max-width: 125px;
+.cardContainer article{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    margin-right: 1em;
 }
-    article.targetMusclesCard img{
-        max-width: 100px;
+
+.cardContainer article img{
+    width: 150px;
+}
+
+.cardContainer article h1{
+    font-size: 1rem;
+    margin-bottom: 1em;
+}
+
+.cardContainer article:hover{
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 600px){
+    .cardContainer article{
+        width: 170px;
+        height: 210px;
     }
 
-    article.targetMusclesCard h3{
-    font-size: .7rem;
-    font-weight: 100;
-}
+    .cardContainer article img{
+        width: 120px;
+        height: auto;
+    }
+
+    .cardContainer article span{
+        font-size: .6rem;
+    }
+
+    .cardContainer article h1{
+        font-size: .75rem;
+        margin-block: 0;
+    }
+
+    .cardContainer article p{
+        font-size: .6rem;
+    }
 }

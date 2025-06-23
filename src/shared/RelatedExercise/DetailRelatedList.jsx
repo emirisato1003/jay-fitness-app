@@ -6,7 +6,9 @@ import 'react-horizontal-scrolling-menu/dist/styles.css';
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from 'react-router';
-import styles from './DetailRelatedList.module.css'
+import styles from './DetailRelatedList.module.css';
+
+
 const arrowsStyles = {
     marginInline: '.5em'
 };
@@ -32,20 +34,19 @@ export default function DetailRelatedList() {
     const { targetMuscles, equipExercisesData } = useOutletContext();
     console.log(targetMuscles);
     return (
-        <div className={styles.targetMuscleCardContainer}>
-            <h3>Similar target muscles exercises </h3>
-            <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-                {targetMuscles.map(exercise =>
-                    <article className={styles.targetMusclesCard}>
-                        <Link to={''}>
-                            <img src={exercise.gifUrl} alt={exercise.name} />
-                            <h3>{exercise.name}</h3>
-                        </Link>
-                    </article>
-                )}
-            </ScrollMenu>
-            <div>
-                <h3>same equipment workout</h3>
+        <div className={styles.relatedWorkouts}>
+            <div className={styles.cardContainer}>
+                <h2>same <span>target muscles</span> exercises </h2>
+                <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+                    {targetMuscles.map(exercise => <ExerciseListCard exercise={exercise} />)}
+                </ScrollMenu>
             </div>
-        </div>);
+            <div className={styles.cardContainer}>
+                <h2>same <span>equipment</span> workout</h2>
+                <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+                    {equipExercisesData.map(exercise => <ExerciseListCard exercise={exercise} />)}
+                </ScrollMenu>
+            </div>
+        </div>
+    );
 }
