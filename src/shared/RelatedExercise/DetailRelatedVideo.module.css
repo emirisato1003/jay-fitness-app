@@ -5,14 +5,15 @@
     margin: 0 auto;
 }
 
-.videoContainer h3{
+.videoContainer h2{
+    justify-self: start;
     margin: 1em;
     font-weight: 200;
     font-size: 1.4rem;
 }
 
-.videoContainer h3 span{
-    color: var(--primary-color);
+.videoContainer h2 span{
+    color: lightblue;
 }
 
 .cardContainer{

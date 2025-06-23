@@ -21,7 +21,7 @@ export default function DetailRelatedVideo() {
     console.log(exerciseVideos.map(video => video.video));
     return (
         <div className={styles.videoContainer}>
-            <h3>Watch <span>{exerciseDetail.name}</span> exercise videos </h3>
+            <h2>Watch <span>{exerciseDetail.name}</span> exercise videos </h2>
             <div className={styles.cardContainer}>
                 {exerciseVideos
                     .slice(0, 6)

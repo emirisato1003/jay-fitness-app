@@ -4,16 +4,15 @@ import styles from './ExerciseListCard.module.css';
 import { Link } from 'react-router';
 
 export default function ExerciseListCard({ exercise }) {
-    console.log(exercise);
+    // console.log(exercise);
     // --- useState ---
 
     return (
         // <section className={styles.exerciseSearch}>
             <article className={styles.exerciseListCard}>
                 <Link to={exercise.id}>
-                    <img src={exercise.gifUrl} alt={`${exercise.name}`} />
+                    <img src={exercise.gifUrl} alt={`gif image of ${exercise.name}`} />
                     <div className='badges'>
-                        <span className='categoryBadge badge'>{exercise.category}</span>
                         <span className='targetBadge badge'>{exercise.target}</span>
                         <span className='bodyPartBadge badge'>{exercise.bodyPart}</span>
                     </div>

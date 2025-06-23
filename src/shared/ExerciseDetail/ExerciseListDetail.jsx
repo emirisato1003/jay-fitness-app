@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DetailRelatedVideo from '../RelatedExercise/DetailRelatedVideo';
-import DetailRelatedList from '../RelatedExercise/RelatedList/DetailRelatedList';
+import DetailRelatedList from '../RelatedExercise/DetailRelatedList';
 import { Outlet, useParams, Link, NavLink } from 'react-router';
 // import muscle from '../../assets/icons/hip_flexors.png';
 
@@ -10,18 +10,27 @@ import { exerciseOptions, fetchData } from '../../utils/fetchData';
 
 export default function ExerciseListDetail() {
     const [exerciseDetail, setExerciseDetail] = useState([]);
+    const [targetMuscles, setTargetMuscles] = useState([]);
+    const [equipExercisesData, setEquipExercisesData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const { id } = useParams();
-    const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`;
+    const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
 
-    const singleExerciseFetch = async () => {
-        const { data, error } = await fetchData(url, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
+    const fetchExerciseData = async () => {
+        const { data, error } = await fetchData(`${baseUrl}/exercise/${id}`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         setExerciseDetail(data);
-        console.log(data);
+        errorMessage && setErrorMessage(error);
+
+        const targetMusclesExercisesData = await fetchData(`${baseUrl}/target/${data.target}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
+        setTargetMuscles(targetMusclesExercisesData.data);
+
+        const equipExercisesData = await fetchData(`${baseUrl}/equipment/${data.equipment}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
+        setEquipExercisesData(equipExercisesData.data);
     };
 
     useEffect(() => {
-        singleExerciseFetch();
+        fetchExerciseData();
     }, []);
     // if no data, return loading...
     if (!exerciseDetail.instructions || !exerciseDetail.secondaryMuscles) return <div>Loading...</div>;
@@ -74,11 +83,11 @@ export default function ExerciseListDetail() {
                             <div className={styles.targetMuscles}>
                                 <div className={styles.muscles}>
                                     <div className={styles.target}>
-                                        <h3>target muscles</h3>
+                                        <h2>target muscles</h2>
                                         {mainMuscleElements}
                                     </div>
                                     <div>
-                                        <h3>secondary target muscle</h3>
+                                        <h2>secondary target muscle</h2>
                                         <div className={styles.secondaryTarget}>
                                             {secondaryMusclesElements}
                                         </div>
@@ -93,7 +102,7 @@ export default function ExerciseListDetail() {
                         <NavLink style={({ isActive }) => isActive ? activeStyles : null} to='relatedLists'>Related Workouts</NavLink>
                     </nav>
                     <hr />
-                    <Outlet context={{ exerciseDetail }} />
+                    <Outlet context={{ exerciseDetail, targetMuscles, equipExercisesData }} />
                 </>
             }
         </div>
