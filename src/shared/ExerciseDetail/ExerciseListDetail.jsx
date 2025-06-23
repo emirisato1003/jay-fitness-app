@@ -67,7 +67,7 @@ export default function ExerciseListDetail() {
         <div>
             {isLoading ? <h1 style={{ textAlign: 'center' }}>Loading...</h1> :
                 <>
-                    <Link className={styles.backToButton} to='/exercise'>&larr; Go back to Exercise List</Link>
+                    <Link className={styles.backToButton} to='..' relative='path'>&larr; Go back to Exercise List</Link>
                     <div className={styles.container}>
                         <img className={styles.gif} src={exerciseDetail.gifUrl} alt={exerciseDetail.name} />
                         <div className={styles.contents}>
