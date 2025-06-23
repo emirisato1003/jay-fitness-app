@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ExerciseListCard from '../features/Exercise/ExerciseListCard';
 import ExerciseViewForm from '../shared/ExerciseViewForm/ExerciseViewForm';
 // import '../../service/service';
@@ -27,9 +27,14 @@ export default function Exercises() {
     const [errorMessage, setErrorMessage] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
 
+    const exerciseSectionRef = useRef(null);
+
+    useEffect(() => {
+
+    }, []);
 
     /*** Fetch Data ***/
-    const exerciseFetchData =async () => {
+    const exerciseFetchData = useCallback(async () => {
         setSearchParams({ page: 1 });
         let exercisesData = [];
         exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
@@ -38,8 +43,7 @@ export default function Exercises() {
         setExercisesList(exercisesData.data);
         // original data from the API (1000+ data)
         setOriginalExercisesList(exercisesData.data);
-        console.log('refetching...');
-    }
+    }, [setSearchParams]);
 
     useEffect(() => {
         exerciseFetchData();
@@ -59,28 +63,40 @@ export default function Exercises() {
     const handleFirstPage = () => {
         if (currentPage > 1) {
             setSearchParams({ page: 1 });
-            window.scrollTo({ top: 1800, behavior: 'smooth' });
+            exerciseSectionRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     };
 
     const handlePreviousPage = () => {
         if (currentPage > 1) {
             setSearchParams({ page: currentPage - 1 });
-            window.scrollTo({ top: 1800, behavior: 'smooth' });
+            exerciseSectionRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     };
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setSearchParams({ page: currentPage + 1 });
-            window.scrollTo({ top: 1800, behavior: 'smooth' });
+            exerciseSectionRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     };
 
     const handleLastPage = () => {
         if (currentPage < totalPages) {
             setSearchParams({ page: totalPages });
-            window.scrollTo({ top: 1800, behavior: 'smooth' });
+            exerciseSectionRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     };
 
@@ -88,13 +104,13 @@ export default function Exercises() {
         <main>
             {!errorMessage ?
                 <>
-                    <ExerciseViewForm setBodyPart={setBodyPart} filteredExercise={filteredExercise} setExercisesList={setExercisesList} originalExerciseList={originalExerciseList} setSearchParams={setSearchParams} />
+                    <ExerciseViewForm setBodyPart={setBodyPart} filteredExercise={filteredExercise} setExercisesList={setExercisesList} originalExerciseList={originalExerciseList} setSearchParams={setSearchParams} exerciseSectionRef={exerciseSectionRef}/>
                     {isLoading
                         ? <h1>Loading...</h1>
                         : filteredExercise.length === 0
                             ? <h1>No exercise Found</h1>
                             : <>
-                                <section className={styles.exercises}>
+                                <section ref={exerciseSectionRef} className={styles.exercises}>
                                     <h1 style={{ margin: '0 0 .7em 3em' }}>{bodyPart} Exercises</h1>
                                     <div className={styles.exerciseLists}>
                                         {currentExercises.map(exercise =>

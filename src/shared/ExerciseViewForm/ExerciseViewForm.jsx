@@ -1,20 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { exerciseOptions, fetchData } from '../../utils/fetchData';
 import styles from './ExerciseViewForm.module.css';
 import FilterExercise from './FilterExercise';
 
-const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList, setSearchParams }) => {
+const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList, setSearchParams, exerciseSectionRef }) => {
     const [bodyParts, setBodyParts] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [originalExercises, setOriginalExercises] = useState([]);
-    useEffect(() => {
-        const fetchBodyPartLists = async () => {
-            const { data } = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
-            setBodyParts(['all', ...data]);
-        };
 
+
+    const fetchBodyPartLists = useCallback(async () => {
+        const { data } = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
+        setBodyParts(['all', ...data]);
+        console.log('fetchBodyPartLists function create/recreated');
+    }, [bodyParts]);
+
+    useEffect(() => {
         fetchBodyPartLists();
     }, []);
+
 
     const handleSearch = async () => {
         if (searchText) {
@@ -26,10 +30,13 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
                     || equipment.toLowerCase().includes(searchText)
             );
 
-            window.scrollTo({ top: 1800, left: 100, behavior: 'smooth' });
+            exerciseSectionRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
             setExercisesList(searchExercises);
-        }else{
-            setExercisesList(originalExercises)
+        } else {
+            setExercisesList(originalExercises);
         }
     };
 
@@ -54,12 +61,12 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
         <section>
             <div className={styles.searchExercises}>
                 <form onSubmit={preventRefresh}>
-                    <input className="" type="text" placeholder='Search Exercises' onChange={(e) => setSearchText(e.target.value.toLowerCase())} value={searchText} />
+                    <input ref={exerciseSectionRef} className="" type="text" placeholder='Search Exercises' onChange={(e) => setSearchText(e.target.value.toLowerCase())} value={searchText} />
                     <button onClick={handleClear} disabled={searchText === ''}>CLEAR</button>
                 </form>
             </div>
             <div className={styles.exerciseFilterCards}>
-                <FilterExercise setBodyPart={setBodyPart} bodyParts={bodyParts} setSearchParams={setSearchParams} />
+                <FilterExercise setBodyPart={setBodyPart} bodyParts={bodyParts} setSearchParams={setSearchParams} exerciseSectionRef={exerciseSectionRef} />
                 <hr />
             </div>
         </section>
