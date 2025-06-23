@@ -104,7 +104,14 @@ export default function Exercises() {
         <main>
             {!errorMessage ?
                 <>
-                    <ExerciseViewForm setBodyPart={setBodyPart} filteredExercise={filteredExercise} setExercisesList={setExercisesList} originalExerciseList={originalExerciseList} setSearchParams={setSearchParams} exerciseSectionRef={exerciseSectionRef}/>
+                    <ExerciseViewForm
+                        setBodyPart={setBodyPart}
+                        filteredExercise={filteredExercise}
+                        setExercisesList={setExercisesList}
+                        originalExerciseList={originalExerciseList}
+                        setSearchParams={setSearchParams}
+                        exerciseSectionRef={exerciseSectionRef}
+                        searchParams={searchParams} />
                     {isLoading
                         ? <h1>Loading...</h1>
                         : filteredExercise.length === 0
