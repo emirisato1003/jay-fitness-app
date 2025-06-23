@@ -13,10 +13,6 @@
     flex-wrap: wrap;
 }
 
-.container img.gif{
-    width: 600px;
-}
-
 .contents{
     display: flex;
     flex-direction: column;

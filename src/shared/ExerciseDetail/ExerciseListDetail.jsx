@@ -32,8 +32,8 @@ export default function ExerciseListDetail() {
     useEffect(() => {
         fetchExerciseData();
     }, []);
-    // if no data, return loading...
-    if (!exerciseDetail.instructions || !exerciseDetail.secondaryMuscles) return <div>Loading...</div>;
+    
+    if (!exerciseDetail.instructions || !exerciseDetail.secondaryMuscles) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
 
     const instructionElements = Object.keys(exerciseDetail.instructions).map(key => (<li key={key}>
         {exerciseDetail.instructions[key]}
