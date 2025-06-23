@@ -3,7 +3,7 @@ import { exerciseOptions, fetchData } from '../../utils/fetchData';
 import styles from './ExerciseViewForm.module.css';
 import FilterExercise from './FilterExercise';
 
-const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList, setSearchParams, exerciseSectionRef }) => {
+const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList, setSearchParams, searchParams, exerciseSectionRef }) => {
     const [bodyParts, setBodyParts] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [originalExercises, setOriginalExercises] = useState([]);
@@ -19,7 +19,6 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
         fetchBodyPartLists();
     }, []);
 
-
     const handleSearch = async () => {
         if (searchText) {
             const searchExercises = originalExerciseList.filter(
@@ -34,6 +33,7 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
                 behavior: 'smooth',
                 block: 'start'
             });
+            setSearchParams({ page: 1 });
             setExercisesList(searchExercises);
         } else {
             setExercisesList(originalExercises);
