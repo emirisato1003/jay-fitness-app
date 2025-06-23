@@ -29,7 +29,7 @@ export default function Exercises() {
 
 
     /*** Fetch Data ***/
-    const exerciseFetchData =async () => {
+    const exerciseFetchData = useCallback(async () => {
         setSearchParams({ page: 1 });
         let exercisesData = [];
         exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
@@ -38,8 +38,7 @@ export default function Exercises() {
         setExercisesList(exercisesData.data);
         // original data from the API (1000+ data)
         setOriginalExercisesList(exercisesData.data);
-        console.log('refetching...');
-    }
+    }, [setSearchParams])
 
     useEffect(() => {
         exerciseFetchData();

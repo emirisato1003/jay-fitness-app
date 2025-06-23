@@ -59,12 +59,6 @@ export default function ExerciseListDetail() {
             </div>);
     });
 
-    // "feet", --- 'muscle'
-    // "grip muscles", -- 'muscle'
-    // "hands", -- 'muscle'
-
-
-    // 14:"serratus anterior" -- 'muscle'
     const activeStyles = { textDecoration: 'underline' };
     return (
         <div>
