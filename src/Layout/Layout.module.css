@@ -2,7 +2,7 @@
 nav{
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 1em;
     padding: 1.2em;
     justify-content: space-between;
     align-items: center;
@@ -21,11 +21,11 @@ nav a{
 }
 
 .navLink{
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 .navLink a{
-    padding-left: 10px;
+    padding-inline: .7em;
 }
 
 .navLink a:hover{

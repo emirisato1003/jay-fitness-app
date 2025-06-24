@@ -32,7 +32,7 @@ const FilterExercise = ({ setBodyPart, bodyParts, setSearchParams, exerciseSecti
             {bodyParts.map(item => {
                 return (
                     <button style={buttonStyle} aria-label='Body Part Categories' onClick={() => handleFilter('bodyPart', item)} key={item.id} className={styles.bodyPart}>
-                        <img src={`/src/assets/icons/bodyParts/${item.replace(/\s+/g, '_')}.png`} alt={item} />
+                        <img src={`/src/assets/icons/bodyParts/${item.replace(/\s+/g, '_')}.png`} alt={`This body part is ${item}`} />
                         <h3>{item}</h3>
                     </button>);
             })}

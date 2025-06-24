@@ -56,7 +56,7 @@ export default function ExerciseListDetail() {
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
             <div className={styles.icon}>
-                <img src={`/src/assets/icons/muscles/${cleanName(exerciseDetail.target) || 'muscle'}.png`} alt="" />
+                <img src={`/src/assets/icons/muscles/${cleanName(exerciseDetail.target) || 'muscle'}.png`} alt={`target muscle is ${exerciseDetail.target}`} />
             </div>
             <p>{exerciseDetail.target}</p>
         </div>;
@@ -65,7 +65,7 @@ export default function ExerciseListDetail() {
         return (
             <div key={key} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
-                    <img src={`/src/assets/icons/muscles/${cleanName(exerciseDetail.secondaryMuscles[key]) || 'muscle'}.png `} alt="" />
+                    <img src={`/src/assets/icons/muscles/${cleanName(exerciseDetail.secondaryMuscles[key]) || 'muscle'}.png `} alt={`secondary Target muscles are ${exerciseDetail.secondaryMuscles}`} />
                 </div>
                 <p>{exerciseDetail.secondaryMuscles[key]}</p>
             </div>);
@@ -84,7 +84,7 @@ export default function ExerciseListDetail() {
                                 relative='path'>&larr; Go back to Exercise List
                             </Link>
                             <div className={styles.container}>
-                                <img className={styles.gif} src={exerciseDetail.gifUrl} alt={exerciseDetail.name} />
+                                <img className={styles.gif} src={exerciseDetail.gifUrl} alt={`the gif of ${exerciseDetail.name}exercise `} />
                                 <div className={styles.contents}>
                                     <div className={styles.detail}>
                                         <h1>{exerciseDetail.name}</h1>

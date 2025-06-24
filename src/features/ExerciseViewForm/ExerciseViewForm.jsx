@@ -60,7 +60,7 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
         <section>
             <div className={styles.searchExercises}>
                 <form onSubmit={preventRefresh}>
-                    <input ref={exerciseSectionRef} className="" type="text" placeholder='Search Exercises' onChange={(e) => setSearchText(e.target.value.toLowerCase())} value={searchText} />
+                    <input ref={exerciseSectionRef} className="" aria-label='search input' placeholder='Search Exercises' onChange={(e) => setSearchText(e.target.value.toLowerCase())} value={searchText} />
                     <button onClick={handleClear} disabled={searchText === ''}>CLEAR</button>
                 </form>
             </div>

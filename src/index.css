@@ -96,6 +96,7 @@ main.about h2{
 
 .featureItem p{
   font-size: .9rem;
+  color: var(--dark-text-color);
 }
 
 .featureItem:hover{

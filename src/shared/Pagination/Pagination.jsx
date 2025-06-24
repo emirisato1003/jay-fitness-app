@@ -23,19 +23,19 @@ export default function Pagination({ currentPage, totalPages, setSearchParams, e
     return (
         <div className={styles.paginationControls}>
             <div>
-                <button onClick={() => pageHandler(1, (currentPage > 1))} disabled={currentPage === 1}>
+                <button aria-label='back to first page' onClick={() => pageHandler(1, (currentPage > 1))} disabled={currentPage === 1}>
                     <MdKeyboardDoubleArrowLeft className={styles.paginateIcon} />
                 </button>
-                <button onClick={() => pageHandler((currentPage - 1), (currentPage > 1))} disabled={currentPage === 1}>
+                <button aria-label='back to previous page' onClick={() => pageHandler((currentPage - 1), (currentPage > 1))} disabled={currentPage === 1}>
                     <MdKeyboardArrowLeft className={styles.paginateIcon} />
                 </button>
             </div>
             <span>{currentPage} of {totalPages}</span>
             <div>
-                <button onClick={() => pageHandler((currentPage + 1), (currentPage < totalPages))} disabled={currentPage === totalPages}>
+                <button aria-label='go to next page' onClick={() => pageHandler((currentPage + 1), (currentPage < totalPages))} disabled={currentPage === totalPages}>
                     <MdKeyboardArrowRight className={styles.paginateIcon} />
                 </button>
-                <button onClick={() => pageHandler(totalPages, (currentPage < totalPages))} disabled={currentPage === totalPages}>
+                <button aria-label='go to the last page' onClick={() => pageHandler(totalPages, (currentPage < totalPages))} disabled={currentPage === totalPages}>
                     <MdKeyboardDoubleArrowRight className={styles.paginateIcon} />
                 </button>
             </div>
