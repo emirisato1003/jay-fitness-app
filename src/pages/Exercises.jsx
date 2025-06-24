@@ -29,13 +29,8 @@ export default function Exercises() {
 
     const exerciseSectionRef = useRef(null);
 
-    useEffect(() => {
-
-    }, []);
-
     /*** Fetch Data ***/
     const exerciseFetchData = async () => {
-        // setSearchParams({ page: 1 });
         let exercisesData = [];
         exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         setErrorMessage(exercisesData.error);
@@ -49,7 +44,7 @@ export default function Exercises() {
         exerciseFetchData();
     }, []);
 
-    const typeFilter = searchParams.get('bodyPart');
+    const typeFilter = searchParams.get('bodyPart') || 'all';
 
     /***Filter Exercise***/
     const filteredExercise = exercisesList.filter(exercise => typeFilter === 'all' ? exercise : typeFilter === exercise.bodyPart);

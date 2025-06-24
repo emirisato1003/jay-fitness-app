@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DetailRelatedVideo from '../RelatedExercise/DetailRelatedVideo';
 import DetailRelatedList from '../RelatedExercise/DetailRelatedList';
-import { Outlet, useParams, Link, NavLink, useLocation } from 'react-router';
+import { Outlet, useParams, Link, NavLink, useLocation, useSearchParams } from 'react-router';
 // import muscle from '../../assets/icons/hip_flexors.png';
 
 import styles from './ExerciseListDetail.module.css';
@@ -16,7 +16,6 @@ export default function ExerciseListDetail() {
     const { id } = useParams();
     const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
     const location = useLocation();
-    console.log(location.state.search);
     const fetchExerciseData = async () => {
         const { data, error } = await fetchData(`${baseUrl}/exercise/${id}`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         setExerciseDetail(data);
@@ -31,7 +30,7 @@ export default function ExerciseListDetail() {
 
     useEffect(() => {
         fetchExerciseData();
-    }, []);
+    }, [id]);
 
     const cleanName = (muscle) => {
         return muscle.toLowerCase().replace(/\s+/g, '_');

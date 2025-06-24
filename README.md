@@ -19,3 +19,4 @@ The app features a mobile-friendly design, making it perfect for use at the gym 
 - react-icon
 - miragejs (API mocking)
 - react-horizontal-scrolling-menu
+- nanoid
