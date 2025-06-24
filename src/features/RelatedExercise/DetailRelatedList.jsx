@@ -7,6 +7,7 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from 'react-router';
 import styles from './DetailRelatedList.module.css';
+import Pagination from '../../shared/Pagination/Pagination';
 
 
 const arrowsStyles = {
@@ -32,36 +33,32 @@ const RightArrow = () => {
 
 export default function DetailRelatedList() {
     const { targetMuscles, equipExercisesData } = useOutletContext();
+    const [searchParams, setSearchParams] = useSearchParams();
 
-    // const exerciseCardElement = (exerciseData) => {
-    //     return exerciseData.map(exercise => {
-    //         return <article key={exercise.id} className={styles.exerciseListCard}>
-    //             <Link to={`/exercise/${exercise.id}`} >
-    //                 <img src={exercise.gifUrl} alt={`gif image of ${exercise.name}`} />
-    //                 <div className='badges'>
-    //                     <span className='targetBadge badge'>{exercise.target}</span>
-    //                     <span className='bodyPartBadge badge'>{exercise.bodyPart}</span>
-    //                 </div>
-    //                 <h1>{exercise.name}</h1>
-    //                 <p>Level: {exercise.difficulty}</p>
-    //             </Link>
-    //         </article>;
-    //     });
-    // };
+    const itemsPerPage = 5;
+    const currentPage = parseInt(searchParams.get('page') || '1');
+    const indexOfFirstExercise = itemsPerPage * (currentPage - 1);
+    const indexOfLastExercise = currentPage * itemsPerPage;
+    const totalPagesForTargetMuscle = Math.ceil(targetMuscles.length / itemsPerPage);
+    const totalPagesForEquipExercise = Math.ceil(equipExercisesData.length / itemsPerPage);
+    const currentTargetMuscleExercises = targetMuscles.slice(indexOfFirstExercise, indexOfLastExercise);
+    const currentEquipExercises = equipExercisesData.slice(indexOfFirstExercise, indexOfLastExercise);
 
     return (
         <div className={styles.relatedWorkouts}>
             <div className={styles.cardContainer}>
                 <h2>same <span>target muscles</span> exercises </h2>
-                <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-                    {targetMuscles.map(exercise => <ExerciseListCard key={exercise.id} exercise={exercise} link />)}
-                </ScrollMenu>
+                <div className={styles.horizontalCardContainer}>
+                    {currentTargetMuscleExercises.map(exercise => <ExerciseListCard key={exercise.id} exercise={exercise} link />)}
+                </div>
+                <Pagination totalPages={totalPagesForTargetMuscle} currentPage={currentPage} setSearchParams={setSearchParams} exerciseSectionRef={null} />
             </div>
             <div className={styles.cardContainer}>
                 <h2>same <span>equipment</span> workout</h2>
-                <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-                    {equipExercisesData.map(exercise => <ExerciseListCard key={exercise.id} exercise={exercise} />)}
-                </ScrollMenu>
+                <div className={styles.horizontalCardContainer}>
+                    {currentEquipExercises.map(exercise => <ExerciseListCard key={exercise.id} exercise={exercise} />)}
+                </div>
+                <Pagination totalPages={totalPagesForEquipExercise} currentPage={currentPage} setSearchParams={setSearchParams} exerciseSectionRef={null} />
             </div>
         </div>
     );

@@ -30,27 +30,3 @@ hr{
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--white-color), rgba(0, 0, 0, 0));
 }
-
-.paginationControls{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
-}
-
-.paginationControls button{
-    background: none;
-}
-
-
-.paginateIcon{
-    font-size: 2rem;
-}
-
-.paginationControls button:disabled .paginateIcon{
-    color: var(--secondary-background-color);
-}
-
-.paginateIcon:hover{
-    color: var(--primary-color);
-}

@@ -6,11 +6,8 @@ import { fetchData, exerciseOptions } from '../utils/fetchData';
 import styles from './Exercises.module.css';
 
 import { MdError } from "react-icons/md";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { useSearchParams } from 'react-router';
+import Pagination from '../shared/Pagination/Pagination';
 
 const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
 
@@ -47,58 +44,6 @@ export default function Exercises() {
     const totalPages = Math.ceil(filteredExercise.length / itemsPerPage);
     const currentExercises = filteredExercise.slice(indexOfFirstExercise, indexOfLastExercise);
 
-    const handleFirstPage = () => {
-        if (currentPage > 1) {
-            setSearchParams(prevParams => {
-                prevParams.set('page', 1);
-                return prevParams;
-            });
-            exerciseSectionRef.current?.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    };
-
-    const handlePreviousPage = () => {
-        if (currentPage > 1) {
-            setSearchParams(prevParams => {
-                prevParams.set('page', currentPage - 1);
-                return prevParams;
-            });
-            exerciseSectionRef.current?.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    };
-
-    const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setSearchParams(prevParams => {
-                prevParams.set('page', currentPage + 1);
-                return prevParams;
-            });
-            exerciseSectionRef.current?.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    };
-
-    const handleLastPage = () => {
-        if (currentPage < totalPages) {
-            setSearchParams(prevParams => {
-                prevParams.set('page', totalPages);
-                return prevParams;
-            });
-            exerciseSectionRef.current?.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    };
-
     return (
         <main>
             {!errorMessage ?
@@ -126,31 +71,12 @@ export default function Exercises() {
                                                 searchParams={searchParams}
                                             />)}
                                     </div>
-                                    <div className={styles.paginationControls}>
-                                        <div>
-                                            <button onClick={() => handleFirstPage()} disabled={currentPage === 1}>
-                                                <MdKeyboardDoubleArrowLeft className={styles.paginateIcon} />
-                                            </button>
-                                            <button onClick={() => handlePreviousPage()} disabled={currentPage === 1}>
-                                                <MdKeyboardArrowLeft className={styles.paginateIcon} />
-                                            </button>
-                                        </div>
-                                        <span>{currentPage} of {totalPages}</span>
-                                        <div>
-                                            <button onClick={() => handleNextPage()} disabled={currentPage === totalPages}>
-                                                <MdKeyboardArrowRight className={styles.paginateIcon} />
-                                            </button>
-                                            <button onClick={() => handleLastPage()} disabled={currentPage === totalPages}>
-                                                <MdKeyboardDoubleArrowRight className={styles.paginateIcon} />
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <Pagination currentPage={currentPage} totalPages={totalPages} exerciseSectionRef={exerciseSectionRef} setSearchParams={setSearchParams} />
                                 </section>
                             </>
 
                     }
                 </>
-                /***Error Message***/
                 : <div style={{ border: '3px dashed var(--accent-color)', padding: '3em' }}>
                     <h1><span style={{ color: 'var(--accent-color)' }}><MdError /> {errorMessage}</span><br /> Something went wrong. Please try again later.</h1>
                 </div>

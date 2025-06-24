@@ -14,7 +14,11 @@
     color:lightblue;
 }
 
-.cardContainer article{
+.horizontalCardContainer{
+    display: flex;
+    justify-content: center;
+}
+.horizontalCardContainer article{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,20 +27,16 @@
     margin-right: 1em;
 }
 
-.cardContainer article img{
+.horizontalCardContainer article img{
     width: 150px;
 }
 
-.cardContainer article h1{
+.horizontalCardContainer article h1{
     font-size: 1.2rem;
 }
 
-.cardContainer article p{
+.horizontalCardContainer article p{
     display: none;
-}
-
-.cardContainer article:hover{
-    transform: translateY(0);
 }
 
 @media screen and (max-width: 600px){
