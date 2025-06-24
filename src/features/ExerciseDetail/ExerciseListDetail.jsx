@@ -22,7 +22,6 @@ export default function ExerciseListDetail() {
     const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
     const location = useLocation();
 
-    console.log(errorMessage);
     const fetchExerciseData = async () => {
         try {
             setIsLoading(true);
@@ -82,7 +81,8 @@ export default function ExerciseListDetail() {
                             <Link
                                 className={styles.backToButton}
                                 to={`..?${location.state?.search || ''}`}
-                                relative='path'>&larr; Go back to Exercise List</Link>
+                                relative='path'>&larr; Go back to Exercise List
+                            </Link>
                             <div className={styles.container}>
                                 <img className={styles.gif} src={exerciseDetail.gifUrl} alt={exerciseDetail.name} />
                                 <div className={styles.contents}>

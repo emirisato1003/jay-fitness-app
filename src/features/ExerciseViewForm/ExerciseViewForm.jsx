@@ -9,10 +9,10 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
     const [originalExercises, setOriginalExercises] = useState([]);
 
 
-    const fetchBodyPartLists = useCallback(async () => {
+    const fetchBodyPartLists = async () => {
         const { data } = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
         setBodyParts(['all', ...data]);
-    }, []);
+    };
 
     useEffect(() => {
         fetchBodyPartLists();
