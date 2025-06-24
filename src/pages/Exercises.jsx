@@ -19,7 +19,7 @@ export default function Exercises() {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
-
+    console.log(searchParams.toString())
     const exerciseSectionRef = useRef(null);
 
     const exerciseFetchData = async () => {
@@ -71,7 +71,7 @@ export default function Exercises() {
                                                 searchParams={searchParams}
                                             />)}
                                     </div>
-                                    <Pagination currentPage={currentPage} totalPages={totalPages} exerciseSectionRef={exerciseSectionRef} setSearchParams={setSearchParams} />
+                                    <Pagination currentPage={currentPage} page={'page'} totalPages={totalPages} exerciseSectionRef={exerciseSectionRef} setSearchParams={setSearchParams} />
                                 </section>
                             </>
 

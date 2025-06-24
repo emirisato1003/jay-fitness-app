@@ -58,7 +58,6 @@ export default function ExerciseListDetail() {
                 <p>{exerciseDetail.secondaryMuscles[key]}</p>
             </div>);
     });
-
     const activeStyles = { textDecoration: 'underline' };
     return (
         <div>

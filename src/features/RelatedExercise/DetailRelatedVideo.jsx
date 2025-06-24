@@ -12,7 +12,6 @@ export default function DetailRelatedVideo() {
 
     const youtubeVideoFetch = async () => {
         const { data } = await fetchData(`${youtubeSearchUrl}/search?query=${exerciseDetail.name} exercise`, youtubeOptions);
-        console.log(data)
         setExerciseVideos(data.contents);
     };
 
