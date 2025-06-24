@@ -18,7 +18,6 @@ export default function DetailRelatedVideo() {
     useEffect(() => {
         youtubeVideoFetch();
     }, []);
-    console.log(exerciseVideos.map(video => video.video));
     return (
         <div className={styles.videoContainer}>
             <h2>Watch <span>{exerciseDetail.name}</span> exercise videos </h2>

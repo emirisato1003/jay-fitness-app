@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import DetailRelatedVideo from '../RelatedExercise/DetailRelatedVideo';
 import DetailRelatedList from '../RelatedExercise/DetailRelatedList';
-import { Outlet, useParams, Link, NavLink } from 'react-router';
+import { Outlet, useParams, Link, NavLink, useLocation } from 'react-router';
 // import muscle from '../../assets/icons/hip_flexors.png';
 
 import styles from './ExerciseListDetail.module.css';
-import { style } from '@mui/system';
 import { exerciseOptions, fetchData } from '../../utils/fetchData';
 
 export default function ExerciseListDetail() {
@@ -16,7 +15,8 @@ export default function ExerciseListDetail() {
     const [errorMessage, setErrorMessage] = useState('');
     const { id } = useParams();
     const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
-
+    const location = useLocation();
+    console.log(location.state.search);
     const fetchExerciseData = async () => {
         const { data, error } = await fetchData(`${baseUrl}/exercise/${id}`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         setExerciseDetail(data);
@@ -67,7 +67,10 @@ export default function ExerciseListDetail() {
         <div>
             {isLoading ? <h1 style={{ textAlign: 'center' }}>Loading...</h1> :
                 <>
-                    <Link className={styles.backToButton} to='..' relative='path'>&larr; Go back to Exercise List</Link>
+                    <Link
+                        className={styles.backToButton}
+                        to={`..?${location.state?.search || ''}`}
+                        relative='path'>&larr; Go back to Exercise List</Link>
                     <div className={styles.container}>
                         <img className={styles.gif} src={exerciseDetail.gifUrl} alt={exerciseDetail.name} />
                         <div className={styles.contents}>

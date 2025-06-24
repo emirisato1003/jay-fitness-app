@@ -3,14 +3,13 @@ import { Box, Stack, Button, TextField } from '@mui/material';
 import styles from './ExerciseListCard.module.css';
 import { Link } from 'react-router';
 
-export default function ExerciseListCard({ exercise }) {
+export default function ExerciseListCard({ exercise, searchParams }) {
     // console.log(exercise);
     // --- useState ---
-
     return (
         // <section className={styles.exerciseSearch}>
             <article className={styles.exerciseListCard}>
-                <Link to={exercise.id}>
+                <Link to={exercise.id} state={{search: searchParams.toString()}}>
                     <img src={exercise.gifUrl} alt={`gif image of ${exercise.name}`} />
                     <div className='badges'>
                         <span className='targetBadge badge'>{exercise.target}</span>

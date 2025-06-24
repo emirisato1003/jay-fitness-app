@@ -34,8 +34,8 @@ export default function Exercises() {
     }, []);
 
     /*** Fetch Data ***/
-    const exerciseFetchData = useCallback(async () => {
-        setSearchParams({ page: 1 });
+    const exerciseFetchData = async () => {
+        // setSearchParams({ page: 1 });
         let exercisesData = [];
         exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         setErrorMessage(exercisesData.error);
@@ -43,14 +43,16 @@ export default function Exercises() {
         setExercisesList(exercisesData.data);
         // original data from the API (1000+ data)
         setOriginalExercisesList(exercisesData.data);
-    }, [setSearchParams]);
+    };
 
     useEffect(() => {
         exerciseFetchData();
     }, []);
 
+    const typeFilter = searchParams.get('bodyPart');
+
     /***Filter Exercise***/
-    const filteredExercise = exercisesList.filter(exercise => bodyPart === 'all' ? exercise : bodyPart === exercise.bodyPart);
+    const filteredExercise = exercisesList.filter(exercise => typeFilter === 'all' ? exercise : typeFilter === exercise.bodyPart);
 
     /*** Pagination ***/
     const itemsPerPage = 10;
@@ -62,7 +64,10 @@ export default function Exercises() {
 
     const handleFirstPage = () => {
         if (currentPage > 1) {
-            setSearchParams({ page: 1 });
+            setSearchParams(prevParams => {
+                prevParams.set('page', 1);
+                return prevParams;
+            });
             exerciseSectionRef.current?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -72,7 +77,10 @@ export default function Exercises() {
 
     const handlePreviousPage = () => {
         if (currentPage > 1) {
-            setSearchParams({ page: currentPage - 1 });
+            setSearchParams(prevParams => {
+                prevParams.set('page', currentPage - 1);
+                return prevParams;
+            });
             exerciseSectionRef.current?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -82,7 +90,10 @@ export default function Exercises() {
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
-            setSearchParams({ page: currentPage + 1 });
+            setSearchParams(prevParams => {
+                prevParams.set('page', currentPage + 1);
+                return prevParams;
+            });
             exerciseSectionRef.current?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -92,7 +103,10 @@ export default function Exercises() {
 
     const handleLastPage = () => {
         if (currentPage < totalPages) {
-            setSearchParams({ page: totalPages });
+            setSearchParams(prevParams => {
+                prevParams.set('page', totalPages);
+                return prevParams;
+            });
             exerciseSectionRef.current?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -124,6 +138,7 @@ export default function Exercises() {
                                             <ExerciseListCard
                                                 key={exercise.id}
                                                 exercise={exercise}
+                                                searchParams={searchParams}
                                             />)}
                                     </div>
                                     {/*** pagination ***/}
