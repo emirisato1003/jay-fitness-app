@@ -1,6 +1,6 @@
 
 const token = import.meta.env.VITE_EXERCISES_API_KEY;
-const youtubeToken = import.meta.env.VITE_YOUTUBE_API_KEY
+const youtubeToken = import.meta.env.VITE_YOUTUBE_API_KEY;
 
 export const exerciseOptions = {
     method: 'GET',
@@ -18,19 +18,11 @@ export const youtubeOptions = {
     }
 };
 
-export const fetchData = async (url, options, onStart, onEnd) => {
-    try {
-        onStart && onStart();
-        const res = await fetch(url, options);
-        if (!res.ok) {
-            throw new Error(res.status);
-        }
-        const data = await res.json();
-        return { data: data };
-    } catch (err) {
-        return { error: err.message };
-    } finally {
-        onEnd && onEnd();
+export const fetchData = async (url, options) => {
+    const res = await fetch(url, options);
+    if (!res.ok) {
+        throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
     }
-
+    const data = await res.json();
+    return { data: data };
 };

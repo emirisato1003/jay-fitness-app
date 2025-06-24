@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchData, youtubeOptions } from '../../utils/fetchData';
-import { data, useOutletContext } from 'react-router';
+import { useOutletContext } from 'react-router';
 import { nanoid } from 'nanoid';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 import styles from './DetailRelatedVideo.module.css';
@@ -17,8 +17,9 @@ export default function DetailRelatedVideo() {
 
     useEffect(() => {
         youtubeVideoFetch();
-    }, [data]);
+    }, []);
 
+    if(!exerciseVideos) return <h1>Loading...</h1>
     return (
         <div className={styles.videoContainer}>
             <h2>Watch <span>{exerciseDetail.name}</span> exercise videos </h2>

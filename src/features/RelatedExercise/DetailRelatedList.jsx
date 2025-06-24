@@ -1,4 +1,4 @@
-import {useOutletContext, useSearchParams } from 'react-router';
+import { useOutletContext, useSearchParams } from 'react-router';
 import ExerciseListCard from '../../shared/Exercise/ExerciseListCard';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 import styles from './DetailRelatedList.module.css';

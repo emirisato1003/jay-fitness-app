@@ -19,17 +19,22 @@ export default function Exercises() {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
-    console.log(searchParams.toString())
     const exerciseSectionRef = useRef(null);
 
     const exerciseFetchData = async () => {
-        let exercisesData = [];
-        exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
-        setErrorMessage(exercisesData.error);
-        setExercisesList(exercisesData.data);
-        setOriginalExercisesList(exercisesData.data);
+        setIsLoading(true);
+        try {
+            const exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions);
+            setExercisesList(exercisesData.data);
+            setOriginalExercisesList(exercisesData.data);
+        } catch (err) {
+            setErrorMessage(err)
+        } finally {
+            setIsLoading(false);
+        }
     };
 
+    console.log(errorMessage)
     useEffect(() => {
         exerciseFetchData();
     }, []);
@@ -43,7 +48,7 @@ export default function Exercises() {
     const indexOfLastExercise = currentPage * itemsPerPage;
     const totalPages = Math.ceil(filteredExercise.length / itemsPerPage);
     const currentExercises = filteredExercise.slice(indexOfFirstExercise, indexOfLastExercise);
-
+    console.log(`exercises.jsx isLoading state`, isLoading)
     return (
         <main>
             {!errorMessage ?
@@ -78,7 +83,7 @@ export default function Exercises() {
                     }
                 </>
                 : <div style={{ border: '3px dashed var(--accent-color)', padding: '3em' }}>
-                    <h1><span style={{ color: 'var(--accent-color)' }}><MdError /> {errorMessage}</span><br /> Something went wrong. Please try again later.</h1>
+                    <h1><span style={{ color: 'var(--accent-color)' }}><MdError /> {errorMessage.message}</span><br /> Something went wrong. Please try again later.</h1>
                 </div>
             }
         </main>
