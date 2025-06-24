@@ -114,7 +114,7 @@ export default function ExerciseListDetail() {
                                 <NavLink style={({ isActive }) => isActive ? activeStyles : null} to='relatedLists'>Related Workouts</NavLink>
                             </nav>
                             <hr />
-                            <Outlet context={{ exerciseDetail, targetMuscles, equipExercisesData }} />
+                            <Outlet context={{ exerciseDetail, targetMuscles, equipExercisesData, isLoading, setIsLoading, errorMessage, setErrorMessage }} />
                         </>
                     }
                 </div>

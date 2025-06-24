@@ -47,50 +47,38 @@ main.home button:hover{
   box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
 }
 
-/*** main elements from about and exercise ***/
-main{
+/***about page***/
+
+main.about{
   /* height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  align-items: center;
+  gap: 5em;
 }
 
-/***about page***/
-article.contents{
-  /* max-width: 900px; */
-  width: auto;
-  margin-inline: 2.5em;
+main.about header{
+  max-width: clamp(50%, 70vw, 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-article.contents header{
-  margin-top: 2em;
+main.about header img{
+  max-width: clamp(300px, 90vw, 1400px);
+  margin-bottom: 4em;
 }
 
-article.contents h1{
-  font-size: 2rem;
-}
-
-article.contents h1 , h2{
-  text-align: center;
-  margin-bottom: .6em;
-}
-
-section.about{
-  margin-block: 5em;
-}
-
-section.introduction{
+main.about h2{
   text-align: center;
   margin-block: 1em;
 }
 
-.about img{
-  max-width: 70%;
-}
 
 .featureItem{
-  margin: 10px auto;
+  margin-bottom: 1.6em;
+  margin-inline: 1em;
   background-color: var(--primary-color);
   padding: 1.5em;
   border-radius: 10px;
@@ -111,18 +99,12 @@ section.introduction{
   transform: translateY(-5px);
 }
 
-section.benefits{
-  margin-block: 2em;
-  justify-self: center;
-}
-
 ul.benefitLists{
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   list-style: none;
   gap: 1em;
-  margin-top: 1em;
 }
 
 ul.benefitLists > li{
@@ -134,7 +116,6 @@ ul.benefitLists > li{
 
 li .icon{
   margin-top: .7em;
-  /* border: 1px solid var(--primary-color); */
   background-color:#1C565F;
   height: 50px;
   width: 50px;
@@ -148,13 +129,14 @@ li .icon{
   width: auto;
 }
 
-.ctaBtn{
+section.ctaBtn{
+  width: clamp(300px, 90vw, 900px);
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #B8C3C7;
   padding: 2em;
-  margin-top: 1em;
+  margin-bottom: 5em;
   color: #161616;
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
@@ -165,8 +147,6 @@ li .icon{
   padding: 1.2em;  
   box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
 }
-
-/***exercise page***/
 
 
 /***Scroll styling***/
@@ -179,11 +159,4 @@ li .icon{
 
 .arrows:hover{
     color: var(--primary-color);
-}
-
-@media screen and (max-width: 480px) {
-    .features{
-      max-width: 350px;
-      margin: 0 auto;
-    }
 }
