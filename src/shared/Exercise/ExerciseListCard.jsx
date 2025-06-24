@@ -1,10 +1,11 @@
 import styles from './ExerciseListCard.module.css';
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 
-export default function ExerciseListCard({ exercise, searchParams }) {
+export default function ExerciseListCard({ exercise }) {
+    const [searchParams] = useSearchParams()
     return (
         <article className={styles.exerciseListCard}>
-            <Link to={exercise.id} state={{ search: searchParams.toString() }}>
+            <Link to={`/exercise/${exercise.id}`} state={{ search: searchParams.toString() }}>
                 <img src={exercise.gifUrl} alt={`gif image of ${exercise.name}`} />
                 <div className='badges'>
                     <span className='targetBadge badge'>{exercise.target}</span>

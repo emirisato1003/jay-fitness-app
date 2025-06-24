@@ -15,19 +15,12 @@
 }
 
 .cardContainer article{
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 200px;
     height: 300px;
     margin-right: 1em;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.cardContainer article a{
-    text-decoration: none;
 }
 
 .cardContainer article img{
@@ -35,13 +28,11 @@
 }
 
 .cardContainer article h1{
-    font-size: 1rem;
-    margin-bottom: 1em;
+    font-size: 1.2rem;
 }
 
 .cardContainer article p{
-    font-size: .9rem;
-    color: var(--dark-text-color);
+    display: none;
 }
 
 .cardContainer article:hover{
@@ -64,11 +55,7 @@
     }
 
     .cardContainer article h1{
-        font-size: .75rem;
+        font-size: .9rem;
         margin-block: 0;
-    }
-
-    .cardContainer article p{
-        font-size: .6rem;
     }
 }

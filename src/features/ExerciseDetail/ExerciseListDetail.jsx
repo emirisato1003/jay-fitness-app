@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import DetailRelatedVideo from '../RelatedExercise/DetailRelatedVideo';
-import DetailRelatedList from '../RelatedExercise/DetailRelatedList';
+import { useEffect, useState } from 'react';
 import { Outlet, useParams, Link, NavLink, useLocation, useSearchParams } from 'react-router';
 // import muscle from '../../assets/icons/hip_flexors.png';
 

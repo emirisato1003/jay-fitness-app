@@ -1,12 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import ExerciseListCard from '../features/Exercise/ExerciseListCard';
-import ExerciseViewForm from '../shared/ExerciseViewForm/ExerciseViewForm';
-// import '../../service/service';
+import ExerciseListCard from '../shared/Exercise/ExerciseListCard';
+import ExerciseViewForm from '../features/ExerciseViewForm/ExerciseViewForm';
 import { fetchData, exerciseOptions } from '../utils/fetchData';
 
 import styles from './Exercises.module.css';
 
-// React Icons
 import { MdError } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
@@ -15,11 +13,9 @@ import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { useSearchParams } from 'react-router';
 
 const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
-// const mockBaseUrl = `/api/exercises`;
 
 export default function Exercises() {
 
-    /*** useState ***/
     const [exercisesList, setExercisesList] = useState([]);
     const [originalExerciseList, setOriginalExercisesList] = useState([]);
     const [bodyPart, setBodyPart] = useState('all');
@@ -29,14 +25,11 @@ export default function Exercises() {
 
     const exerciseSectionRef = useRef(null);
 
-    /*** Fetch Data ***/
     const exerciseFetchData = async () => {
         let exercisesData = [];
         exercisesData = await fetchData(`${baseUrl}?limit=0`, exerciseOptions, () => setIsLoading(true), () => setIsLoading(false));
         setErrorMessage(exercisesData.error);
-        // data will be used for searching
         setExercisesList(exercisesData.data);
-        // original data from the API (1000+ data)
         setOriginalExercisesList(exercisesData.data);
     };
 
@@ -45,11 +38,8 @@ export default function Exercises() {
     }, []);
 
     const typeFilter = searchParams.get('bodyPart') || 'all';
-
-    /***Filter Exercise***/
     const filteredExercise = exercisesList.filter(exercise => typeFilter === 'all' ? exercise : typeFilter === exercise.bodyPart);
 
-    /*** Pagination ***/
     const itemsPerPage = 10;
     const currentPage = parseInt(searchParams.get('page') || '1');
     const indexOfFirstExercise = itemsPerPage * (currentPage - 1);
@@ -136,7 +126,6 @@ export default function Exercises() {
                                                 searchParams={searchParams}
                                             />)}
                                     </div>
-                                    {/*** pagination ***/}
                                     <div className={styles.paginationControls}>
                                         <div>
                                             <button onClick={() => handleFirstPage()} disabled={currentPage === 1}>

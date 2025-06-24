@@ -1,5 +1,5 @@
 import { useLocation, useOutletContext, useSearchParams } from 'react-router';
-import ExerciseListCard from '../../features/Exercise/ExerciseListCard';
+import ExerciseListCard from '../../shared/Exercise/ExerciseListCard';
 import { useContext } from 'react';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
@@ -33,34 +33,34 @@ const RightArrow = () => {
 export default function DetailRelatedList() {
     const { targetMuscles, equipExercisesData } = useOutletContext();
 
-    const exerciseCardElement = (exerciseData) => {
-        return exerciseData.map(exercise => {
-            return <article key={exercise.id} className={styles.exerciseListCard}>
-                <Link to={`/exercise/${exercise.id}`} >
-                    <img src={exercise.gifUrl} alt={`gif image of ${exercise.name}`} />
-                    <div className='badges'>
-                        <span className='targetBadge badge'>{exercise.target}</span>
-                        <span className='bodyPartBadge badge'>{exercise.bodyPart}</span>
-                    </div>
-                    <h1>{exercise.name}</h1>
-                    <p>Level: {exercise.difficulty}</p>
-                </Link>
-            </article>;
-        });
-    };
+    // const exerciseCardElement = (exerciseData) => {
+    //     return exerciseData.map(exercise => {
+    //         return <article key={exercise.id} className={styles.exerciseListCard}>
+    //             <Link to={`/exercise/${exercise.id}`} >
+    //                 <img src={exercise.gifUrl} alt={`gif image of ${exercise.name}`} />
+    //                 <div className='badges'>
+    //                     <span className='targetBadge badge'>{exercise.target}</span>
+    //                     <span className='bodyPartBadge badge'>{exercise.bodyPart}</span>
+    //                 </div>
+    //                 <h1>{exercise.name}</h1>
+    //                 <p>Level: {exercise.difficulty}</p>
+    //             </Link>
+    //         </article>;
+    //     });
+    // };
 
     return (
         <div className={styles.relatedWorkouts}>
             <div className={styles.cardContainer}>
                 <h2>same <span>target muscles</span> exercises </h2>
                 <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-                    {exerciseCardElement(targetMuscles)}
+                    {targetMuscles.map(exercise => <ExerciseListCard key={exercise.id} exercise={exercise} link />)}
                 </ScrollMenu>
             </div>
             <div className={styles.cardContainer}>
                 <h2>same <span>equipment</span> workout</h2>
                 <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-                    {exerciseCardElement(equipExercisesData)}
+                    {equipExercisesData.map(exercise => <ExerciseListCard key={exercise.id} exercise={exercise} />)}
                 </ScrollMenu>
             </div>
         </div>

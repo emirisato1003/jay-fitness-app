@@ -4,11 +4,10 @@ import { Route, Routes } from 'react-router';
 import Layout from './Layout/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
-import ExerciseList from './pages/Exercises';
-import ExerciseListDetail from './shared/ExerciseDetail/ExerciseListDetail';
-// import DetailRelatedList from './shared/RelatedExercise/DetailRelatedList';
-import DetailRelatedList from './shared/RelatedExercise/DetailRelatedList';
-import DetailRelatedVideo from './shared/RelatedExercise/DetailRelatedVideo';
+import Exercises from './pages/Exercises';
+import ExerciseListDetail from './features/ExerciseDetail/ExerciseListDetail';
+import DetailRelatedList from './features/RelatedExercise/DetailRelatedList';
+import DetailRelatedVideo from './features/RelatedExercise/DetailRelatedVideo';
 
 function App() {
 
@@ -18,7 +17,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='about' element={<About />} />
-          <Route path='exercise' element={<ExerciseList />} />
+          <Route path='exercise' element={<Exercises />} />
           <Route path='exercise/:id' element={<ExerciseListDetail />}>
             <Route index element={<DetailRelatedVideo />} />
             <Route path='relatedLists' element={<DetailRelatedList />} />
