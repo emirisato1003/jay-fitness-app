@@ -4,6 +4,7 @@ import { FaMagic } from "react-icons/fa";
 import { CiDumbbell } from "react-icons/ci";
 import { TbUserHeart } from "react-icons/tb";
 import { MdMoneyOff } from "react-icons/md";
+import { Link } from 'react-router';
 
 export default function About() {
     return (
@@ -59,7 +60,7 @@ export default function About() {
             </section>
             <section className="ctaBtn">
                 <h2>Find the Perfect Workout for You!</h2>
-                <button>Let's find your favorite exercise</button>
+                <button><Link to='/exercise'>Let's find your favorite exercise</Link></button>
             </section>
         </main>
     );
