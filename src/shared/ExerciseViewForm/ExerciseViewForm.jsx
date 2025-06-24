@@ -12,8 +12,7 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
     const fetchBodyPartLists = useCallback(async () => {
         const { data } = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
         setBodyParts(['all', ...data]);
-        console.log('fetchBodyPartLists function create/recreated');
-    }, [bodyParts]);
+    }, []);
 
     useEffect(() => {
         fetchBodyPartLists();
@@ -66,7 +65,7 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
                 </form>
             </div>
             <div className={styles.exerciseFilterCards}>
-                <FilterExercise setBodyPart={setBodyPart} bodyParts={bodyParts} setSearchParams={setSearchParams} exerciseSectionRef={exerciseSectionRef} />
+                <FilterExercise setBodyPart={setBodyPart} bodyParts={bodyParts} setSearchParams={setSearchParams} exerciseSectionRef={exerciseSectionRef} searchParams={searchParams} />
                 <hr />
             </div>
         </section>
