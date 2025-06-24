@@ -8,6 +8,7 @@ import styles from './Exercises.module.css';
 import { MdError } from "react-icons/md";
 import { useSearchParams } from 'react-router';
 import Pagination from '../shared/Pagination/Pagination';
+import ErrorDialog from '../shared/ErrorDialog';
 
 const baseUrl = `https://exercisedb.p.rapidapi.com/exercises`;
 
@@ -34,7 +35,6 @@ export default function Exercises() {
         }
     };
 
-    console.log(errorMessage)
     useEffect(() => {
         exerciseFetchData();
     }, []);
@@ -82,9 +82,7 @@ export default function Exercises() {
 
                     }
                 </>
-                : <div style={{ border: '3px dashed var(--accent-color)', padding: '3em' }}>
-                    <h1><span style={{ color: 'var(--accent-color)' }}><MdError /> {errorMessage.message}</span><br /> Something went wrong. Please try again later.</h1>
-                </div>
+                : <ErrorDialog errorMessage={errorMessage.message}/>
             }
         </main>
     );

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useParams, Link, NavLink, useLocation, useSearchParams } from 'react-router';
-import { MdError } from "react-icons/md";
+import { Outlet, useParams, Link, NavLink, useLocation } from 'react-router';
 // import muscle from '../../assets/icons/hip_flexors.png';
 
+import ErrorDialog from '../../shared/ErrorDialog';
 import styles from './ExerciseListDetail.module.css';
 import { exerciseOptions, fetchData } from '../../utils/fetchData';
 
@@ -75,11 +75,9 @@ export default function ExerciseListDetail() {
     return (
         <>
             {errorMessage ?
-                <div style={{ border: '3px dashed var(--accent-color)', padding: '3em' }}>
-                    <h1><span style={{ color: 'var(--accent-color)' }}><MdError /> {errorMessage}</span><br /> Something went wrong. Please try again later.</h1>
-                </div>
+                <ErrorDialog errorMessage={errorMessage} />
                 : <div>
-                    {isLoading ? <h1 style={{textAlign: 'center'}}>Loading...</h1>
+                    {isLoading ? <h1 style={{ textAlign: 'center' }}>Loading...</h1>
                         : <>
                             <Link
                                 className={styles.backToButton}
