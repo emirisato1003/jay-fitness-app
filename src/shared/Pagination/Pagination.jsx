@@ -1,10 +1,10 @@
-import React from 'react';
 import styles from './Pagination.module.css';
 
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
+
 export default function Pagination({ currentPage, totalPages, setSearchParams, exerciseSectionRef, page }) {
 
     const pageHandler = (setPage, condition) => {
@@ -19,44 +19,7 @@ export default function Pagination({ currentPage, totalPages, setSearchParams, e
             block: 'start'
         });
     };
-    // const handleFirstPage = () => {
-    //     if (currentPage > 1) {
-    //         setSearchParams(prevParams => {
-    //             prevParams.set(page, 1);
-    //             return prevParams;
-    //         });
-    //         exerciseSectionRef && exerciseSectionRef.current?.scrollIntoView({
-    //             behavior: 'smooth',
-    //             block: 'start'
-    //         });
-    //     }
-    // };
 
-    // const handlePreviousPage = () => {
-    //     if (currentPage > 1) {
-    //         setSearchParams(prevParams => {
-    //             prevParams.set(page, currentPage - 1);
-    //             return prevParams;
-    //         });
-    //         exerciseSectionRef && exerciseSectionRef.current?.scrollIntoView({
-    //             behavior: 'smooth',
-    //             block: 'start'
-    //         });
-    //     }
-    // };
-
-    // const handleLastPage = () => {
-    //     if (currentPage < totalPages) {
-    //         setSearchParams(prevParams => {
-    //             prevParams.set(page, totalPages);
-    //             return prevParams;
-    //         });
-    //         exerciseSectionRef && exerciseSectionRef.current?.scrollIntoView({
-    //             behavior: 'smooth',
-    //             block: 'start'
-    //         });
-    //     }
-    // };
     return (
         <div className={styles.paginationControls}>
             <div>

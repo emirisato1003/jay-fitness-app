@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ExerciseListCard from '../shared/Exercise/ExerciseListCard';
 import ExerciseViewForm from '../features/ExerciseViewForm/ExerciseViewForm';
 import { fetchData, exerciseOptions } from '../utils/fetchData';
 
 import styles from './Exercises.module.css';
 
-import { MdError } from "react-icons/md";
 import { useSearchParams } from 'react-router';
 import Pagination from '../shared/Pagination/Pagination';
 import ErrorDialog from '../shared/ErrorDialog';

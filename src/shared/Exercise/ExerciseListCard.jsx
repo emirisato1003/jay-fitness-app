@@ -1,5 +1,5 @@
 import styles from './ExerciseListCard.module.css';
-import { Link, useLocation, useSearchParams } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 
 export default function ExerciseListCard({ exercise }) {
     const [searchParams] = useSearchParams();

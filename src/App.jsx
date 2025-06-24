@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router';
 import Layout from './Layout/Layout';

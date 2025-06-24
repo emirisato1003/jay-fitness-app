@@ -1,0 +1,13 @@
+.notFound{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.notFound button{
+    margin-top: 2em;
+}
+
+.notFound button a{
+    color: white;
+    text-decoration: none;
+}
