@@ -5,7 +5,7 @@ export default function ExerciseListCard({ exercise }) {
     const [searchParams] = useSearchParams();
     return (
         <article className={styles.exerciseListCard}>
-            <Link to={`/exercise/${exercise.id}`} state={{ search: !searchParams.toString().includes('page' || 'bodyPart') ? searchParams.delete(searchParams.toString()) : searchParams.toString() }}>
+            <Link to={`/exercise/${exercise.id}`} state={{ search: !searchParams.toString().includes('page' || 'bodyPart' || 'search') ? searchParams.delete(searchParams.toString()) : searchParams.toString() }}>
                 <img src={exercise.gifUrl} alt={`gif image of ${exercise.name}`} />
                 <div className='badges'>
                     <span className='targetBadge badge'>{exercise.target}</span>

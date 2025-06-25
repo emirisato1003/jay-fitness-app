@@ -66,7 +66,7 @@ export default function Exercises() {
                             ? <h1>No exercise Found</h1>
                             : <>
                                 <section ref={exerciseSectionRef} className={styles.exercises}>
-                                    <h1 style={{ margin: '0 0 .7em 3em' }}>{bodyPart} Exercises</h1>
+                                    <h1 style={{ margin: '0 0 .7em 3em' }}>{typeFilter} Exercises</h1>
                                     <div className={styles.exerciseLists}>
                                         {currentExercises.map(exercise =>
                                             <ExerciseListCard
