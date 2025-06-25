@@ -32,7 +32,16 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
                 behavior: 'smooth',
                 block: 'start'
             });
-            setSearchParams({ page: 1 });
+            setSearchParams(prevParams => {
+                const newParams = new URLSearchParams(prevParams);
+                newParams.set('page', '1');
+                if (searchText === null) {
+                    newParams.delete('search');
+                } else {
+                    newParams.set('search', searchText);
+                }
+                return newParams;
+            });
             setExercisesList(searchExercises);
         } else {
             setExercisesList(originalExercises);
@@ -55,6 +64,12 @@ const ExerciseViewForm = ({ setExercisesList, setBodyPart, originalExerciseList,
     const handleClear = () => {
         setSearchText('');
         setOriginalExercises(originalExerciseList);
+        setSearchParams(prevParams => {
+            if(prevParams.get('search')){
+                prevParams.delete('search')
+            }
+            return prevParams
+        })
     };
     return (
         <section>

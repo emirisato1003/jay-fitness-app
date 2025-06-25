@@ -48,10 +48,9 @@ export default function ExerciseListDetail() {
         fetchExerciseData();
     }, [id]);
 
-    const instructionElements = exerciseDetail.instructions && Object.keys(exerciseDetail.instructions).map(key => (<li key={key}>
-        {exerciseDetail.instructions[key]}
-    </li>
-    ));
+    const instructionElements = exerciseDetail.instructions && exerciseDetail.instructions.map((step) => (
+        <li>{step}</li>
+    ))
 
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
@@ -61,13 +60,13 @@ export default function ExerciseListDetail() {
             <p>{exerciseDetail.target}</p>
         </div>;
 
-    const secondaryMusclesElements = exerciseDetail.secondaryMuscles && Object.keys(exerciseDetail.secondaryMuscles).map(key => {
+    const secondaryMusclesElements = exerciseDetail.secondaryMuscles && exerciseDetail.secondaryMuscles.map(muscle => {
         return (
-            <div key={key} className={styles.muscleBadge}>
+            <div key={muscle} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
-                    <img src={`/src/assets/icons/muscles/${cleanName(exerciseDetail.secondaryMuscles[key]) || 'muscle'}.png `} alt={`secondary Target muscles are ${exerciseDetail.secondaryMuscles}`} />
+                    <img src={`/src/assets/icons/muscles/${cleanName(muscle) || 'muscle'}.png `} alt={`secondary Target muscles are ${muscle}`} />
                 </div>
-                <p>{exerciseDetail.secondaryMuscles[key]}</p>
+                <p>{muscle}</p>
             </div>);
     });
     const activeStyles = { textDecoration: 'underline' };
