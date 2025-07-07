@@ -3,10 +3,10 @@ import { Outlet, useParams, Link, NavLink, useLocation } from 'react-router';
 import ErrorDialog from '../../shared/ErrorDialog';
 import styles from './ExerciseListDetail.module.css';
 import { exerciseOptions, fetchData } from '../../utils/fetchData';
+
 const cleanName = (muscle) => {
-    if (muscle) {
-        return muscle.toLowerCase().replace(/\s+/g, '_');
-    }
+    if (!muscle) return 'muscle';
+    return muscle.toLowerCase().replace(/\s+/g, '_');
 };
 
 export default function ExerciseListDetail() {
@@ -47,13 +47,13 @@ export default function ExerciseListDetail() {
 
     const instructionElements = exerciseDetail.instructions && exerciseDetail.instructions.map((step) => (
         <li>{step}</li>
-    ))
+    ));
 
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
             <div className={styles.icon}>
                 <img src={`/public/muscles/${cleanName(exerciseDetail.target) || 'muscle'}.png`} alt={`target muscle is ${exerciseDetail.target}`} />
-                
+
             </div>
             <p>{exerciseDetail.target}</p>
         </div>;
