@@ -2,9 +2,9 @@
 ## #FITLIFE (Fitness Application)
 
 ### Overview
-This fitness app helps users discover exercise tutorials and build their workout routines. Users can search for exercises in three ways: by exercise name, equipment type, or target muscle group. When users find exercises they like, they can save them to create a personalized workout list that includes step-by-step tutorials and instructional YouTube videos.
+This fitness app helps users discover exercise tutorials and build their workout routines. Users can search for exercises in three ways: by exercise name, equipment type, or target muscle group.
 
-The app features a mobile-friendly design, making it perfect for use at the gym or any workout location. Whether you're planning your routine at home or need a quick tutorial reminder during your workout, you can access your saved exercises and instructions anytime, anywhere. 
+The app features a mobile-friendly design, making it perfect for use at the gym or any workout location. Whether you're planning your routine at home or need a quick tutorial reminder during your workout. 
 
 
 ### Features⚙️
