@@ -64,7 +64,7 @@ export default function ExerciseListDetail() {
         return (
             <div key={muscle} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
-                    <img src={`/src/assets/icons/muscles/${cleanName(muscle) || 'muscle'}.png `} alt={`secondary Target muscles are ${muscle}`} />
+                    <img src={`../assets/icons/muscles/${cleanName(muscle) || 'muscle'}.png `} alt={`secondary Target muscles are ${muscle}`} />
                 </div>
                 <p>{muscle}</p>
             </div>);
