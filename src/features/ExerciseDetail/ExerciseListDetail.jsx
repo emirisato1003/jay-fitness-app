@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useParams, Link, NavLink, useLocation } from 'react-router';
-// import muscle from '../../assets/icons/hip_flexors.png';
-
 import ErrorDialog from '../../shared/ErrorDialog';
 import styles from './ExerciseListDetail.module.css';
 import { exerciseOptions, fetchData } from '../../utils/fetchData';
@@ -55,7 +53,7 @@ export default function ExerciseListDetail() {
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
             <div className={styles.icon}>
-                <img src={`/src/assets/icons/muscles/${cleanName(exerciseDetail.target) || 'muscle'}.png`} alt={`target muscle is ${exerciseDetail.target}`} />
+                <img src={`../../assets/icons/muscles/${cleanName(exerciseDetail.target) || 'muscle'}.png`} alt={`target muscle is ${exerciseDetail.target}`} />
             </div>
             <p>{exerciseDetail.target}</p>
         </div>;
