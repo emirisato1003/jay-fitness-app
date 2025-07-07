@@ -3,7 +3,6 @@ import { Outlet, useParams, Link, NavLink, useLocation } from 'react-router';
 import ErrorDialog from '../../shared/ErrorDialog';
 import styles from './ExerciseListDetail.module.css';
 import { exerciseOptions, fetchData } from '../../utils/fetchData';
-
 const cleanName = (muscle) => {
     if (muscle) {
         return muscle.toLowerCase().replace(/\s+/g, '_');
@@ -53,7 +52,7 @@ export default function ExerciseListDetail() {
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
             <div className={styles.icon}>
-                <img src={`../../assets/icons/muscles/${cleanName(exerciseDetail.target) || 'muscle'}.png`} alt={`target muscle is ${exerciseDetail.target}`} />
+                <img src={`../../../public/muscles/${cleanName(exerciseDetail.target) || 'muscle'}.png`} alt={`target muscle is ${exerciseDetail.target}`} />
             </div>
             <p>{exerciseDetail.target}</p>
         </div>;
@@ -62,7 +61,7 @@ export default function ExerciseListDetail() {
         return (
             <div key={muscle} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
-                    <img src={`../../assets/icons/muscles/${cleanName(muscle) || 'muscle'}.png `} alt={`secondary Target muscles are ${muscle}`} />
+                    <img src={`../../../public/muscles/${cleanName(muscle) || 'muscle'}.png `} alt={`secondary Target muscles are ${muscle}`} />
                 </div>
                 <p>{muscle}</p>
             </div>);
