@@ -52,7 +52,8 @@ export default function ExerciseListDetail() {
     const mainMuscleElements =
         <div className={styles.muscleBadge}>
             <div className={styles.icon}>
-                <img src={`../../../public/muscles/${cleanName(exerciseDetail.target) || 'muscle'}.png`} alt={`target muscle is ${exerciseDetail.target}`} />
+                <img src={`/public/muscles/${cleanName(exerciseDetail.target) || 'muscle'}.png`} alt={`target muscle is ${exerciseDetail.target}`} />
+                
             </div>
             <p>{exerciseDetail.target}</p>
         </div>;
@@ -61,7 +62,7 @@ export default function ExerciseListDetail() {
         return (
             <div key={muscle} className={styles.muscleBadge}>
                 <div className={styles.icon} style={{ backgroundColor: 'var(--secondary-text-color)' }}>
-                    <img src={`../../../public/muscles/${cleanName(muscle) || 'muscle'}.png `} alt={`secondary Target muscles are ${muscle}`} />
+                    <img src={`/public/muscles/${cleanName(muscle) || 'muscle'}.png `} alt={`secondary Target muscles are ${muscle}`} />
                 </div>
                 <p>{muscle}</p>
             </div>);
